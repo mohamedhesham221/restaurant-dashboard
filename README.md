@@ -77,48 +77,37 @@ Check out the live version here: [Restaurant Dashboard](https://restaurant-dashb
 ## 📂 Folder Structure
 
 ```
-meat-meals-dashboard/
-├── public/
-│   ├── favicon.ico
-│   └── index.html
+restaurant-dashboard/
+├── node_modules
+├── public
 ├── src/
-│   ├── assets/
-│   │   ├── images/
-│   │   └── icons/
+│   ├── assets
 │   ├── components/
-│   │   ├── common/
-│   │   ├── forms/
-│   │   ├── modals/
-│   │   └── charts/
-│   ├── hooks/
-│   │   ├── useAuth.js
-│   │   ├── useOrders.js
-│   │   └── useMenu.js
-│   ├── pages/
-│   │   ├── Dashboard/
-│   │   ├── Orders/
-│   │   ├── Menu/
-│   │   ├── Inventory/
-│   │   ├── Staff/
-│   │   └── Auth/
-│   ├── services/
-│   │   ├── firebase.js
-│   │   ├── auth.js
-│   │   └── firestore.js
-│   ├── stores/
-│   │   ├── authStore.js
-│   │   ├── orderStore.js
-│   │   └── menuStore.js
-│   ├── utils/
-│   │   ├── constants.js
-│   │   ├── helpers.js
-│   │   └── formatters.js
+│   │   ├── home
+│   │   ├── about
+│   │   ├── menu
+│   │   ├── faq
+│   │   ├── reservation
+│   │   ├── dashboard
+│   │   ├── login
+│   │   ├── contact
+│   │   └── customer
+│   ├── hooks
+│   ├── layouts
+│   ├── pages
+│   ├── store
+│   ├── firebase
+│   ├── utils
+│   ├── App.css
 │   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
+│   ├── index.css
+│   └── main.jsx
+├── index.html
 ├── package.json
-├── vite.config.js
+├── package-lock.json
 ├── eslint.config.js
+├── vite.config.js
+├── .gitignore
 └── README.md
 ```
 
@@ -127,24 +116,20 @@ meat-meals-dashboard/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/meat-meals-dashboard
-cd meat-meals-dashboard
+git clone https://github.com/mohamedhesham221/restaurant-dashboard
+cd restaurant-dashboard
 ```
 
 2. Install dependencies:
 
 ```bash
 npm install
-# or
-yarn install
 ```
 
 3. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 ## 🔥 Firebase Configuration
@@ -161,7 +146,6 @@ yarn dev
 # Enable Email/Password and Google auth:
 1. Go to Authentication → Sign-in method
 2. Click "Email/Password" and enable it
-3. Click "Google" and enable it (optional)
 4. Save changes
 ```
 
@@ -171,22 +155,13 @@ yarn dev
 2. Click "Create Database" → Start in test mode
 3. Choose your preferred region
 4. Create these collections:
-   - `restaurants`
+   - `meals`
    - `orders`
-   - `menuItems`
-   - `inventory`
-   - `users`
-   - `staff`
-
-### 4. Firebase Storage Setup
-
-1. Go to Storage
-2. Click "Get Started"
-3. Set up security rules for image uploads
+   - `reservations`
 
 ### Environment Variables
 
-Create `.env.local` file in project root:
+Create `.env` file in project root:
 
 ```env
 VITE_FIREBASE_API_KEY=your_api_key_here
@@ -206,46 +181,6 @@ npm run build
 # Preview the build
 npm run preview
 
-# Deploy to Firebase Hosting (optional)
-npm install -g firebase-tools
-firebase login
-firebase init hosting
-firebase deploy
-```
-
-## 📊 Key Features Details
-
-### Order Management
-
-- Real-time order tracking from kitchen to delivery
-- Order status updates (pending → preparing → ready → delivered)
-- Kitchen display system integration
-- Customer notification system
-
-### Analytics Dashboard
-
-- Daily/weekly/monthly sales reports
-- Popular menu items analysis
-- Staff performance metrics
-- Inventory turnover rates
-- Customer behavior insights
-
-### Inventory Management
-
-- Real-time stock tracking
-- Expiration date monitoring
-- Automatic reorder alerts
-- Supplier management
-- Cost analysis and profitability reports
-
-## 🔐 User Roles
-
-| Role | Permissions |
-|------|-------------|
-| **Admin** | Full system access, analytics, staff management |
-| **Manager** | Order management, inventory, reports |
-| **Staff** | Order taking, status updates |
-| **Kitchen** | Order preparation, inventory updates |
 
 ## 👨‍💻 Author
 
@@ -254,15 +189,7 @@ firebase deploy
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Contributing
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## ⭐ Show your support
 
