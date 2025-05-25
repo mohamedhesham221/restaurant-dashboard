@@ -71,7 +71,7 @@ const MenuList = () => {
 					{meals.map((meal) => {
 						return (
 							<Card
-								sx={{ maxWidth: 345, backgroundColor: "unset" }}
+								sx={{ maxWidth: 345, width: {xs: "100%",lg: "25%"},backgroundColor: "unset" }}
 								key={meal.id}
 							>
 								<CardActionArea>

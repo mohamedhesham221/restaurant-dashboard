@@ -110,7 +110,7 @@ const OrdersTable = ({ orderBag }) => {
 									}}
 								>
 									{/* Display the price of the meal */}
-									${order.price.toFixed(2)}
+									${order.price}
 								</TableCell>
 								<TableCell align="center">
 									{/* Controls to increase or decrease the quantity */}

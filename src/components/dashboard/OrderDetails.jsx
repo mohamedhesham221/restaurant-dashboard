@@ -94,8 +94,8 @@ const OrderDetails = ({ order }) => {
         </Typography>
 
         {/* Customer and order information */}
-        <Stack direction={"row"} justifyContent={"space-evenly"} mt={4}>
-          <Stack direction={"column"}>
+        <Stack direction={"row"} alignItems={"start"} spacing={4} mt={4}>
+          <Stack direction={"column"} alignItems={"start"} >
             <Typography
               variant="body1"
               color="var(--secondary-text)"
@@ -108,7 +108,7 @@ const OrderDetails = ({ order }) => {
               {order.name}
             </Typography>
           </Stack>
-          <Stack direction={"column"}>
+          <Stack direction={"column"} alignItems={"start"}>
             <Typography
               variant="body1"
               color="var(--secondary-text)"
@@ -121,7 +121,7 @@ const OrderDetails = ({ order }) => {
               {order.phone}
             </Typography>
           </Stack>
-          <Stack direction={"column"}>
+          <Stack direction={"column"} alignItems={"start"}>
             <Typography
               variant="body1"
               color="var(--secondary-text)"
@@ -134,7 +134,7 @@ const OrderDetails = ({ order }) => {
               {order.city}
             </Typography>
           </Stack>
-          <Stack direction={"column"}>
+          <Stack direction={"column"} alignItems={"start"}>
             <Typography
               variant="body1"
               color="var(--secondary-text)"
@@ -150,8 +150,8 @@ const OrderDetails = ({ order }) => {
         </Stack>
 
         {/* Additional order details */}
-        <Stack direction={"row"} justifyContent={"space-evenly"}  mt={4}>
-          <Stack direction={"column"}>
+        <Stack direction={"row"} alignItems={"start"} spacing={4} mt={4}>
+          <Stack direction={"column"} alignItems={"start"}>
             <Typography
               variant="body1"
               color="var(--secondary-text)"
@@ -164,7 +164,7 @@ const OrderDetails = ({ order }) => {
               {order.email}
             </Typography>
           </Stack>
-          <Stack direction={"column"}>
+          <Stack direction={"column"} alignItems={"start"}>
             <Typography
               variant="body1"
               color="var(--secondary-text)"
@@ -177,7 +177,7 @@ const OrderDetails = ({ order }) => {
               {order.address}
             </Typography>
           </Stack>
-          <Stack direction={"column"}>
+          <Stack direction={"column"} alignItems={"start"}>
             <Typography
               variant="body1"
               color="var(--secondary-text)"

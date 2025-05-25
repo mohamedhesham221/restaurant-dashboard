@@ -113,7 +113,7 @@ const CustomerOrder = () => {
                     }}
                   >
                     {/* Display price */}
-                    ${order.price.toFixed(2)}
+                    ${order.price}
                   </TableCell>
                   <TableCell align="center">
                     {/* Display quantity */}
