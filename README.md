@@ -67,8 +67,8 @@ A comprehensive restaurant management system designed specifically for meat-focu
 
 ## Screenshots
 
+![Website Screenshot](./src/assets/website-screenshot.png)
 ![Dashboard Screenshot](./src/assets/dashboard-screenshot.png)
-![Orders Screenshot](./src/assets/orders-screenshot.png)
 
 ## 🚀 Live Preview
 
