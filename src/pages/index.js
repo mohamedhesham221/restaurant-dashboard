@@ -1,0 +1,12 @@
+export {default as Home} from "./Home";
+export {default as About} from "./About";
+export {default as Contact} from "./Contact";
+export {default as Menu} from "./Menu";
+export {default as NotFound} from "./NotFound"; 
+export {default as Dashboard} from "./Dashboard";
+export {default as Reservation} from "./reservation";
+export {default as Faq} from "./Faq";
+export {default as Login} from "./Login";
+export {default as Register} from "./Register";
+export {default as Cart} from "./Cart";
+export {default as CustomerData} from "./CustomerData";

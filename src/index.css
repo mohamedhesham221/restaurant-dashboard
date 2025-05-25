@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --highlight-color: #D68240;
+  --primary-text: #F2F2F2;
+  --secondary-text: #797B78;
+  --bg-color: #0A1316;
+  --card-bg-color: #10181B;
+  --second-rate-icon-color: #EF7C6A;
+  --third-rate-icon-color: #F855CA;
+  --input-bg-color: #182F31;
+  --font: "Poppins", sans-serif;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+}
