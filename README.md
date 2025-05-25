@@ -1,4 +1,4 @@
-# Meat Meals Restaurant Dashboard
+# ![Logo](./src/assets/logo.png) Butcha Restaurant Dashboard
 
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -14,11 +14,8 @@ A comprehensive restaurant management system designed specifically for meat-focu
 - 📋 **Reservations Management** table booking system with CRUD operations (add, update, delete, view)
 - 📊 **Orders Management** comprehensive order handling (create, update, cancel, track status)
 - 📈 **Analytics Dashboard** with sales reports and charts using Recharts
-- 👥 **Customer Management** customer profiles with CRUD operations (add, edit, view, delete)
-- 🏪 **Table Management** restaurant seating arrangement and availability tracking
 - 🔄 **Real-time Updates** with Firestore and TanStack Query
 - 📱 **Responsive Design** works perfectly on all devices
-- 💳 **Payment Processing** integrated payment management and transaction tracking
 
 ## Pages & Components
 
