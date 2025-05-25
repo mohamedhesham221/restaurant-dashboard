@@ -1,4 +1,8 @@
-# ![Logo](./src/assets/logo.png) Butcha Restaurant Dashboard
+<p align="center">
+  <img src="./src/assets/logo.png" alt="Meat Meals Restaurant" width="300" height="100"/>
+</p>
+
+# Butcha Restaurant Dashboard
 
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -37,6 +41,7 @@ A comprehensive restaurant management system designed specifically for meat-focu
 ## Tech Stack
 
 **Frontend:**
+
 - React.js 18+
 - Vite (Build tool)
 - Material-UI (MUI) v5
@@ -47,11 +52,13 @@ A comprehensive restaurant management system designed specifically for meat-focu
 - Recharts (Analytics)
 
 **Backend Services:**
+
 - Firebase Authentication
 - Firestore Database
 - Firebase Storage
 
 **UI & Styling:**
+
 - Material-UI Components
 - MUI Icons
 - Responsive Grid System
@@ -207,12 +214,14 @@ firebase deploy
 ## 📊 Key Features Details
 
 ### Order Management
+
 - Real-time order tracking from kitchen to delivery
 - Order status updates (pending → preparing → ready → delivered)
 - Kitchen display system integration
 - Customer notification system
 
 ### Analytics Dashboard
+
 - Daily/weekly/monthly sales reports
 - Popular menu items analysis
 - Staff performance metrics
@@ -220,6 +229,7 @@ firebase deploy
 - Customer behavior insights
 
 ### Inventory Management
+
 - Real-time stock tracking
 - Expiration date monitoring
 - Automatic reorder alerts

@@ -14,7 +14,7 @@ import {
 	Reservation,
 	Faq,
 } from "./pages";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
 
 	const routes = [

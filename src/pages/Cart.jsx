@@ -15,7 +15,7 @@ import useOrderStore from "../store/useOrderStore";
 import { useNavigate } from "react-router-dom";
 import PageMeta from "../components/PageMeta";
 import { metaData } from "../utils/metaData";
-
+import ProtectedRoute from "../components/ProtectedRoute";
 // Cart component to display the user's order bag and calculate totals
 const Cart = () => {
 	const navigate = useNavigate();
@@ -41,6 +41,7 @@ const Cart = () => {
 	// Render the Cart component UI
 	return (
 		<>
+		<ProtectedRoute />
 		<PageMeta
 						title={metaData.cart.title}
 						description={metaData.cart.description}
