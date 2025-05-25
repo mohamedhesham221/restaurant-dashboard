@@ -159,6 +159,15 @@ npm run dev
    - `orders`
    - `reservations`
 
+### 4. ImgBB Setup
+
+1. Go To ImgBB
+2. Create an Account
+3. Visit API Key page
+4. Generate a new API key
+5. Copy the API key
+6. Use the key in your React code
+
 ### Environment Variables
 
 Create `.env` file in project root:
@@ -170,6 +179,7 @@ VITE_FIREBASE_PROJECT_ID=your_project_id
 VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
 VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
+VITE_IMGBB_API_KEY=your_imgbb_api_key
 ```
 
 ## 🏗️ Build for Production
