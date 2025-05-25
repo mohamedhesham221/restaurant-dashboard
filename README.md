@@ -180,7 +180,7 @@ npm run build
 
 # Preview the build
 npm run preview
-
+```
 
 ## 👨‍💻 Author
 
