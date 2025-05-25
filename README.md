@@ -57,7 +57,7 @@ A comprehensive restaurant management system designed specifically for meat-focu
 
 - Firebase Authentication
 - Firestore Database
-- Firebase Storage
+- ImgBB image Storage
 
 **UI & Styling:**
 
