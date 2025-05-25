@@ -14,12 +14,14 @@ A comprehensive restaurant management system designed specifically for meat-focu
 ## Features
 
 - 🔒 **Secure Authentication** using Firebase Auth with role-based access
+- 🔒 **Secure Routes** secure specified routes if visitor did not login
 - 🍖 **Meals Management** complete CRUD operations for meat dishes (add, update, delete)
 - 📋 **Reservations Management** table booking system with CRUD operations (add, update, delete, view)
 - 📊 **Orders Management** comprehensive order handling (create, update, cancel, track status)
 - 📈 **Analytics Dashboard** with sales reports and charts using Recharts
 - 🔄 **Real-time Updates** with Firestore and TanStack Query
 - 📱 **Responsive Design** works perfectly on all devices
+- 🏷️ **Meta Tags Control** dynamic website title changes when navigating between pages
 
 ## Pages & Components
 
