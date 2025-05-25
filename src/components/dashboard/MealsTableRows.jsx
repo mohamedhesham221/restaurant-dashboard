@@ -1,5 +1,5 @@
 import * as React from "react";
-import RenderMealRow from "./RenderMEalRow";
+import RenderMealRow from "./RenderMealRow";
 
 // Component to render rows of meals based on search query or rating filters
 
