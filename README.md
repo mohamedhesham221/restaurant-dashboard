@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./src/assets/logo.png" alt="Meat Meals Restaurant" width="300" height="100"/>
+  <img src="./src/assets/logo.png" alt="Meat Meals Restaurant" width="50" height="50"/>
 </p>
 
 # Butcha Restaurant Dashboard
