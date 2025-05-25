@@ -161,6 +161,8 @@ npm run dev
 
 ### 4. ImgBB Setup
 
+- For upload meals images
+
 1. Go To ImgBB
 2. Create an Account
 3. Visit API Key page
