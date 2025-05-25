@@ -72,7 +72,7 @@ A comprehensive restaurant management system designed specifically for meat-focu
 
 ## 🚀 Live Preview
 
-Check out the live version here: [Meat Meals Dashboard](https://your-deployment-url.vercel.app/)
+Check out the live version here: [Restaurant Dashboard](https://restaurant-dashboard-ten.vercel.app/)
 
 ## 📂 Folder Structure
 

@@ -183,7 +183,7 @@ const HeroSection = () => {
 											fontSize: "2rem"
 										}}
 									>
-										0.00 AM
+										00.00 AM
 									</Typography>
 								</Stack>
 							</Stack>
