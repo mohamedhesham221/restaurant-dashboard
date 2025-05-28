@@ -1,22 +1,23 @@
 import * as React from "react";
 import { Box, Typography, Container, Stack } from "@mui/material";
+import CountUp from "react-countup";
 
 const stats = [
 	{
-		name: "1287",
-		description: "VISITORS DAILY",
+		count: 500,
+		title: "VISITORS DAILY",
 	},
 	{
-		name: "578",
-		description: "DELIVERIES MONTHLY",
+		count: 320,
+		title: "DELIVERIES MONTHLY",
 	},
 	{
-		name: "1440",
-		description: "POSITIVE FEEDBACK",
+		count: 1020,
+		title: "POSITIVE FEEDBACK",
 	},
 	{
-		name: "40",
-		description: "AWARDS AND HONORS",
+		count: 40,
+		title: "AWARDS AND HONORS",
 	},
 ];
 const SecondSection = () => {
@@ -41,17 +42,17 @@ const SecondSection = () => {
 									sx={{
 										textAlign: "center",
 										fontWeight: "600",
-										fontSize: "2rem",
+										
 										fontFamily: "var(--font)",
 									}}
 								>
-									{stat.name}+
+									<CountUp start={0} end={stat.count} duration={2} style={{fontSize: "2rem",}}/>+
 								</Typography>
 								<Typography
 									variant="body2"
 									sx={{ fontSize: "0.7rem", fontFamily: "var(--font)" }}
 								>
-									{stat.description}
+									{stat.title}
 								</Typography>
 							</Box>
 						);

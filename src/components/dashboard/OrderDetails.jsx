@@ -121,19 +121,7 @@ const OrderDetails = ({ order }) => {
               {order.phone}
             </Typography>
           </Stack>
-          <Stack direction={"column"} alignItems={"start"}>
-            <Typography
-              variant="body1"
-              color="var(--secondary-text)"
-              fontFamily={"var(--font)"}
-              fontWeight={600}
-            >
-              City
-            </Typography>
-            <Typography variant="body2" fontFamily={"var(--font)"}>
-              {order.city}
-            </Typography>
-          </Stack>
+         
           <Stack direction={"column"} alignItems={"start"}>
             <Typography
               variant="body1"
@@ -171,12 +159,13 @@ const OrderDetails = ({ order }) => {
               fontFamily={"var(--font)"}
               fontWeight={600}
             >
-              Address
+              City
             </Typography>
             <Typography variant="body2" fontFamily={"var(--font)"}>
-              {order.address}
+              {order.city}
             </Typography>
           </Stack>
+         
           <Stack direction={"column"} alignItems={"start"}>
             <Typography
               variant="body1"
@@ -191,7 +180,19 @@ const OrderDetails = ({ order }) => {
             </Typography>
           </Stack>
         </Stack>
-
+        <Stack direction={"column"} alignItems={"start"} mt={4}>
+            <Typography
+              variant="body1"
+              color="var(--secondary-text)"
+              fontFamily={"var(--font)"}
+              fontWeight={600}
+            >
+              Address
+            </Typography>
+            <Typography variant="body2" fontFamily={"var(--font)"}>
+              {order.address}
+            </Typography>
+          </Stack>
         {/* Meals and status update section */}
         <OrderDetailsMeals
           order={order}

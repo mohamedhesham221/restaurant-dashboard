@@ -71,7 +71,11 @@ const MenuList = () => {
 					{meals.map((meal) => {
 						return (
 							<Card
-								sx={{ maxWidth: 345, width: {xs: "100%",lg: "25%"},backgroundColor: "unset" }}
+								sx={{
+									maxWidth: 345,
+									width: { xs: "100%", lg: "25%" },
+									backgroundColor: "unset",
+								}}
 								key={meal.id}
 							>
 								<CardActionArea>
@@ -80,13 +84,21 @@ const MenuList = () => {
 										height="140"
 										image={meal.img}
 										alt={meal.name}
+										sx={{
+											"&:hover": {
+												
+											},
+										}}
 									/>
 									<CardContent sx={{ backgroundColor: "var(--card-bg-color)" }}>
 										<Typography
 											gutterBottom
 											variant="h5"
 											component="div"
-											sx={{ color: "var(--highlight-color)", fontFamily: "var(--font)", }}
+											sx={{
+												color: "var(--highlight-color)",
+												fontFamily: "var(--font)",
+											}}
 										>
 											{meal.name}
 										</Typography>
@@ -95,18 +107,23 @@ const MenuList = () => {
 											direction={"row"}
 											spacing={"6px"}
 											alignmeals={"center"}
-											sx={{ color: "var(--secondary-text)",fontFamily: "var(--font)", }}
+											sx={{
+												color: "var(--secondary-text)",
+												fontFamily: "var(--font)",
+											}}
 										>
 											<AccessAlarmsIcon />
-											<Typography variant="body2"  fontFamily= "var(--font)">{meal.time} mins</Typography>
+											<Typography variant="body2" fontFamily="var(--font)">
+												{meal.time} mins
+											</Typography>
 											<Divider
 												orientation="vertical"
 												variant="middle"
 												flexmeal
-												sx={{ backgroundColor: "var(--secondary-text)", }}
+												sx={{ backgroundColor: "var(--secondary-text)" }}
 											/>
 											{meal.serves > 1 ? <GroupIcon /> : <PersonIcon />}
-											<Typography variant="body2" fontFamily= "var(--font)">
+											<Typography variant="body2" fontFamily="var(--font)">
 												{meal.serves} {meal.serves > 1 ? "persons" : "person"}
 											</Typography>
 										</Stack>

@@ -43,6 +43,7 @@ const MenuHeader = () => {
 							lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 },
 							textAlign: { xs: "center", sm: "left" },
 						}}
+						className="text-focus-in"
 					>
 						Explore Our Foods{" "}
 					</Typography>

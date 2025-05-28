@@ -169,12 +169,7 @@ const ModalForm = ({
 									...(modalType === "edit" && { inputLabel: { shrink: true } }),
 								}}
 							/>
-							{loading && (
-								<Typography variant="body2" color="var(--highlight-color)">
-									Uploading
-								</Typography>
-							)}
-              {error && (
+							{error && (
 								<Typography variant="body2" color="error">
 									Failed uploadng
 								</Typography>
@@ -291,6 +286,9 @@ const ModalForm = ({
 							<Button
 								variant="contained"
 								type="submit"
+								loading={loading}
+								loadingPosition="end"
+								loadingIndicator="Updating…"
 								sx={{
 									backgroundColor: "var(--highlight-color)",
 									fontWeight: "500",

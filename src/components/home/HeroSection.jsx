@@ -66,6 +66,7 @@ const HeroSection = ({goMenu}) => {
 								},
 								fontFamily: "var(--font)" // Custom font for the heading
 							}}
+							className="text-focus-in"
 						>
 							Crafting Memorable Meals
 						</Typography>
@@ -76,10 +77,19 @@ const HeroSection = ({goMenu}) => {
 								size="medium"
 								fontFamily= "var(--font)"
 								onClick={() =>  navigate("./reservation")}
+								sx={{
+									"&:hover" : {
+										transform: "scale(1.1)"
+									}
+								}}
 							>
 								BOOK A TABLE
 							</Button>
-							<Button variant="text" color="var(--primary-text)" size="medium" fontFamily= "var(--font)" onClick={goMenu}>
+							<Button variant="text" color="var(--primary-text)" size="medium" fontFamily= "var(--font)" onClick={goMenu} sx={{
+									"&:hover" : {
+										transform: "scale(1.1)"
+									}
+								}}>
 								OPEN MENU
 							</Button>
 						</Stack>

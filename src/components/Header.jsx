@@ -106,7 +106,7 @@ const Header = () => {
 	// Render the header component with navigation and user settings
 	return (
 		<>
-			<AppBar position="static" sx={{ backgroundColor: "transparent" }}>
+			<AppBar position="static" sx={{ backgroundColor: "var(--bg-color)", position:"relative", zIndex: "9999" }}>
 				<Container maxWidth="xl">
 					<Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
 						{/* Desktop Logo */}

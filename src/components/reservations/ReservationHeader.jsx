@@ -45,6 +45,7 @@ const ReservationHeader = () => {
             lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 },
             textAlign: { xs: "center", sm: "left" },
           }}
+          className="focus-in-contract-bck"
         >
           Reservation{" "}
         </Typography>

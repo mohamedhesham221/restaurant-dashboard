@@ -10,6 +10,7 @@ const ContactHeader = () => {
 				spacing={2}
 				sx={{
 					alignItems: "center",
+					paddingTop: {xs: "150px", md: 0}
 				}}
 			>
 				<Typography
@@ -22,6 +23,7 @@ const ContactHeader = () => {
 						lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 },
 						textAlign: { xs: "center", sm: "left" },
 					}}
+					className="focus-in-contract-bck"
 				>
 					Contact Us{" "}
 				</Typography>

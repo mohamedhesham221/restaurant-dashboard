@@ -55,6 +55,7 @@ const HeroSection = () => {
 						spacing={6}
 						justifyContent="space-between"
 						alignItems="center"
+						marginTop={{xs: "150px"}}
 					>
 						{/* Left section with text and buttons */}
 						<Stack
@@ -90,6 +91,7 @@ const HeroSection = () => {
 									textAlign: "left",
 									fontFamily: "var(--font)",
 								}}
+								className="text-focus-in"
 							>
 								Working Hours
 							</Typography>
@@ -132,15 +134,29 @@ const HeroSection = () => {
 						<Box
 							component="div"
 							sx={{
-								backgroundColor: "#121A1D",
+								backgroundColor: "#121a1dd6",
 								borderRadius: "8px",
 								width: { xs: "100%", sm: "400px" },
 								textAlign: "center",
+								borderTop: "2px solid var(--highlight-color)",
+								borderRight: "2px solid var(--highlight-color)"
 							}}
+							className="scale-in-tr"
 						>
-							<Stack direction="column" spacing={6} sx={{ padding: "2rem" }}>
+							<Stack direction="column" spacing={{xs: 3, md: 6}} sx={{ padding: "2rem" }}>
 								{/* Working hours for Saturday to Wednesday */}
 								<Stack direction="column" spacing={2}>
+								<Typography
+										variant="body1"
+										sx={{
+											color: "var(--primary-text)",
+											fontWeight: "700",
+											fontFamily: "var(--font)",
+											fontSize: "1.5rem",
+										}}
+									>
+										Visit Us:
+									</Typography>
 									<Typography
 										variant="body1"
 										sx={{
@@ -156,7 +172,7 @@ const HeroSection = () => {
 										sx={{
 											color: "var(--secondary-text)",
 											fontFamily: "var(--font)",
-											fontSize: "2rem"
+											fontSize: {xs:"1.2rem", md: "2rem"}
 										}}
 									>
 										12:00 PM
@@ -180,7 +196,7 @@ const HeroSection = () => {
 										sx={{
 											color: "var(--secondary-text)",
 											fontFamily: "var(--font)",
-											fontSize: "2rem"
+											fontSize: {xs:"1.2rem", md: "2rem"}
 										}}
 									>
 										00.00 AM

@@ -127,6 +127,11 @@ const SecondSection = ({goMenu}) => {
 										width: "100%",
 										height: "auto",
 										maxWidth: "560px",
+										cursor: "pointer",
+										transition: "all 0.5s ease",
+										"&:hover" : {
+											opacity: 0.5
+										}
 									}}
 									order={{ xs: 0, md: index % 2 === 0 ? 1 : 0 }}
 								/>

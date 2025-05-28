@@ -87,7 +87,7 @@ const Footer = () => {
 						display: "flex",
 						flexDirection: { xs: "column", md: "row" },
 						justifyContent: "space-between",
-						alignItems: "start",
+						alignItems: "center",
 						gap: 5,
 					}}
 				>
@@ -109,7 +109,8 @@ const Footer = () => {
 							alt="Logo"
 							sx={{
 								mr: 1,
-								height: 50,
+								width: 80,
+								height: "auto",
 							}}
 						/>
 						{/* Company Description */}
