@@ -46,7 +46,7 @@ const SecondSection = () => {
 										fontFamily: "var(--font)",
 									}}
 								>
-									<CountUp start={0} end={stat.count} duration={2} style={{fontSize: "2rem",}}/>+
+									<CountUp start={0} end={stat.count} duration={2} style={{fontSize: "2rem",}} suffix="+" enableScrollSpy scrollSpyOnce/>
 								</Typography>
 								<Typography
 									variant="body2"
