@@ -1,19 +1,10 @@
 import * as React from 'react';
-import { Box } from "@mui/material";
 import images from "../../utils/images";
-
+import AuthImg from "./AuthImg";
 const RegisterImg = () => {
   return (
     <>
-      <Box
-				component="img"
-				src={images.SignUp}
-				alt="user login with computer"
-        sx={{
-          display: {xs: "none", md: "block"},
-          width: "50%"
-        }}
-			/>
+      <AuthImg src={images.SignUp} alt="user sign up illustration" />
     </>
   );
 };

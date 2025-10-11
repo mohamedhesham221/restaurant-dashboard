@@ -1,20 +1,11 @@
-import * as React from "react";
-import { Box } from "@mui/material";
 import images from "../../utils/images";
+import AuthImg from "./AuthImg";
 const LoginImg = () => {
-	return (
-		<>
-			<Box
-				component="img"
-				src={images.ComputerLogIn}
-				alt="user login with computer"
-        sx={{
-          display: {xs: "none", md: "block"},
-          width: "50%"
-        }}
-			/>
-		</>
-	);
+  return (
+    <>
+      <AuthImg src={images.ComputerLogIn} alt="user login with computer" />
+    </>
+  );
 };
 
 export default LoginImg;

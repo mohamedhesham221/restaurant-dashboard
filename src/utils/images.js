@@ -10,6 +10,7 @@ import Newsletter from "../assets/news-letter.webp";
 import ContactBG from "../assets/contact-bg.webp";
 import ComputerLogIn from "../assets/computer-login.png"
 import SignUp from "../assets/signup.png"
+import ForgetPass from '../assets/forgot-password.png';
 const images = {
   HeroHome: HeroHome,
   chef: ChefIcon,
@@ -22,7 +23,8 @@ const images = {
   Newsletter: Newsletter,
   ContactBG: ContactBG,
   ComputerLogIn: ComputerLogIn,
-  SignUp: SignUp
+  SignUp: SignUp,
+  ForgetPass: ForgetPass
 };
 
 export default images;

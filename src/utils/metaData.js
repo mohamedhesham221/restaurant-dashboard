@@ -48,4 +48,8 @@ export const metaData = {
     title: 'Page Not Found - Butcha',
     description: 'Sorry, the page you are looking for does not exist.',
   },
+  forgotPassword: {
+    title: 'Forgot Password - Butcha',
+    description: 'Reset your password here.',
+  }
 };
