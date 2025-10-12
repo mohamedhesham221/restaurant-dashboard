@@ -23,7 +23,7 @@ const stats = [
 const SecondSection = () => {
 	return (
 		<>
-			<Container maxWidth="lg" sx={{ padding: "2rem" }}>
+			<Container maxWidth="lg" sx={{ padding: "2rem", marginY: {md: "3rem"} }}>
 				<Stack
 					direction={{ xs: "column", sm: "row" }}
 					spacing={3}

@@ -35,7 +35,7 @@ const sectionContent = [
 const SecondSection = ({goMenu}) => {
 	return (
 		<>
-			<Container maxWidth="lg" sx={{ padding: "2rem" }}>
+			<Container maxWidth="lg" sx={{ padding: "2rem", marginTop: {md: "5rem"} }}>
 				<Grid container>
 					{sectionContent.map((item, index) => {
 						return (
