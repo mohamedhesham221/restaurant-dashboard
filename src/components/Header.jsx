@@ -63,7 +63,8 @@ const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   // State for user settings menu
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isUserAuthMenu, setIsUserAuthMenu] = React.useState(false);
+  const [isOpenMenu, setIsOpenMenu] = React.useState(false);
   // Handlers for opening and closing menus
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -72,15 +73,22 @@ const Header = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+  const toggleNavigationMobileMenu = (event) => {
+    setIsOpenMenu(!isOpenMenu);
+    if (!isOpenMenu) {
+      handleOpenNavMenu(event);
+    } else {
+      handleCloseNavMenu();
+    }
+  };
   // Handler for closing the user settings menu
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
   // Handler for opening the user settings menu
   const toggleMenu = (event) => {
-    setIsMenuOpen(!isMenuOpen);
-    if (!isMenuOpen) {
+    setIsUserAuthMenu(!isUserAuthMenu);
+    if (!isUserAuthMenu) {
       setAnchorElUser(event.currentTarget);
     } else {
       setAnchorElUser(null);
@@ -154,7 +162,7 @@ const Header = () => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleOpenNavMenu}
+                onClick={toggleNavigationMobileMenu}
                 color="inherit"
               >
                 <MenuIcon sx={{ color: "var(--highlight-color)" }} />
