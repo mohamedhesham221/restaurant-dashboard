@@ -7,6 +7,7 @@ import {
 	ListItemText,
 	Box,
 } from "@mui/material";
+import TextFade from "../animations/TextFade";
 
 const bookingInstructions = [
 	{
@@ -35,6 +36,7 @@ const ReservationHeader = () => {
           alignItems: "center",
         }}
       >
+          <TextFade direction="up" staggerChildren={0.2} isOnce={false}>
         <Typography
           variant="h2"
           sx={{
@@ -43,9 +45,8 @@ const ReservationHeader = () => {
             fontFamily: "var(--font)",
             fontWeight: 700,
             lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 },
-            textAlign: { xs: "center", sm: "left" },
+            textAlign: { xs: "center", sm: "left", md: "center" },
           }}
-          className="focus-in-contract-bck"
         >
           Reservation{" "}
         </Typography>
@@ -73,6 +74,7 @@ const ReservationHeader = () => {
           recommended to secure your table, especially during busy dinner hours
           and weekends.
         </Typography>
+        </TextFade>
         <Box component="div" sx={{ textAlign: "start", width: "100%" }}>
           <Typography
             sx={{
