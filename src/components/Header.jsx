@@ -372,7 +372,7 @@ const Header = () => {
                             onClick={handleSignOut}
                             endIcon={<Logout />}
                           >
-                            {setting}
+                            Sign out
                           </Button>
                         </MenuItem>
                       );
@@ -396,7 +396,7 @@ const Header = () => {
                         onClick={handleSignOut}
                         endIcon={<Logout />}
                       >
-                        {setting}
+                        Sign out
                       </Button>
                     </MenuItem>
                   ))}
