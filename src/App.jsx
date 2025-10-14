@@ -25,7 +25,7 @@ function App() {
 		{ path: "/contact", element: <Contact /> },
 		{ path: "/reservation", element: <Reservation /> },
 		{ path: "faq", element: <Faq /> },
-		{ path: "/dashboard", element: <Dashboard /> },
+		{ path: "/admin/dashboard", element: <Dashboard /> },
 		{ path: "/login", element: <Login /> },
 		{ path: "/register", element: <Register /> },
 		{ path: "/forgot-password", element: <ForgotPassword /> },

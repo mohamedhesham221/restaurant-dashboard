@@ -11,10 +11,12 @@ import {
   Badge,
   Button,
   Avatar,
+  Chip,
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
+import Logout from "@mui/icons-material/Logout";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { styled } from "@mui/material/styles";
 import Logo from "../assets/logo.png";
@@ -22,17 +24,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { logOutUser, getCurrentUser } from "../firebase/firebaseAuth";
 import { useQuery } from "@tanstack/react-query";
 import useOrderStore from "../store/useOrderStore";
+import { auth } from "../firebase/firebaseAuth";
+import { deepPurple, deepOrange } from "@mui/material/colors";
 
 // Navigation links
-const pages = [
-  "Home",
-  "About",
-  "Menu",
-  "Contact",
-  "Reservation",
-  "FAQ",
-  "Dashboard",
-];
+const pages = ["Home", "About", "Menu", "Contact", "Reservation", "FAQ"];
 // User settings menu items
 const settings = [
   {
@@ -45,6 +41,8 @@ const settings = [
   },
 ];
 const currentUserSettings = ["Logout"];
+const adminSettings = ["Dashboard", "Logout"];
+// Styled Badge component for cart icon
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -53,8 +51,13 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     padding: "0 4px",
   },
 }));
-
+// Admin email from environment variables
+const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
 const Header = () => {
+  // Check if the current user is an admin
+  const isAdmin = auth.currentUser?.email === ADMIN_EMAIL;
+
+  // Hook for navigation
   const navigate = useNavigate();
   // get the order bag from Zustand store
   const orderBag = useOrderStore((state) => state.orders);
@@ -274,14 +277,22 @@ const Header = () => {
                 </StyledBadge>
               </IconButton>
               {/* User Avatar or Login Icon */}
-              <Tooltip title="Register or Login">
+              <Tooltip title={user ? user.displayName : "Login or Register"}>
                 <IconButton
                   onClick={toggleMenu}
                   sx={{ p: 0 }}
                   aria-label="avatar"
                 >
                   {user ? (
-                    <Avatar>{user?.displayName?.slice(0, 1)}</Avatar>
+                    <Avatar
+                      sx={
+                        isAdmin
+                          ? { bgcolor: deepPurple[500] }
+                          : { bgcolor: deepOrange[500] }
+                      }
+                    >
+                      {user?.displayName?.charAt(0)}
+                    </Avatar>
                   ) : (
                     <PersonIcon
                       sx={{
@@ -309,43 +320,103 @@ const Header = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {/* Render settings based on user authentication */}
-                {user
-                  ? currentUserSettings.map((setting) => (
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Button
-                          sx={{
-                            textAlign: "center",
-                            backgroundColor: "transparent",
-                            color: "#000",
-                            "&:hover": {
-                              backgroundColor: "transparent",
-                            },
-                          }}
-                          onClick={handleSignOut}
-                        >
-                          {setting}
-                        </Button>
-                      </MenuItem>
-                    ))
-                  : settings.map((setting) => (
-                      <MenuItem
-                        key={setting.name}
-                        onClick={handleCloseUserMenu}
+                {user && (
+                  <Chip
+                    avatar={
+                      <Avatar>{user.displayName.charAt(0)}</Avatar>
+                    }
+                    label={`Hello, ${user.displayName}`}
+                    color="#182F31"
+                    variant="outlined"
+                    sx={{ mx: 1, mb: 1 }}
+                  />
+                )}
+                {/* Render admin options if the authenticated user is an admin */}
+                {user &&
+                  isAdmin &&
+                  adminSettings.map((setting) => {
+                    if (setting === "Dashboard") {
+                      return (
+                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                          <Box
+                            component={Link}
+                            to="/admin/dashboard"
+                            sx={{
+                              fontFamily: "var(--font)",
+                              textDecoration: "none",
+                              color: "#10181B",
+                              "&:hover": { color: "var(--highlight-color)" },
+                              borderBottom: "1px solid #ccc",
+                              width: "100%",
+                              pb: 1,
+                            }
+                          }
+                          >
+                            {setting}
+                          </Box>
+                        </MenuItem>
+                      );
+                    }
+                    if (setting === "Logout") {
+                      return (
+                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                          <Button
+                            variant="contained"
+                            sx={{
+                              textAlign: "center",
+                              backgroundColor: "red",
+                              color: "#f2f2f2",
+                              "&:hover": { backgroundColor: "darkred" },
+                              textTransform: "none",
+                            }}
+                            onClick={handleSignOut}
+                            endIcon={<Logout />}
+                          >
+                            {setting}
+                          </Button>
+                        </MenuItem>
+                      );
+                    }
+                    return null;
+                  })}
+                {/* Render logout option for regular authenticated users */}
+                {user &&
+                  !isAdmin &&
+                  currentUserSettings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Button
+                        variant="contained"
+                        sx={{
+                          textAlign: "center",
+                          backgroundColor: "red",
+                          color: "#f2f2f2",
+                          "&:hover": { backgroundColor: "darkred" },
+                          textTransform: "none",
+                        }}
+                        onClick={handleSignOut}
+                        endIcon={<Logout />}
                       >
-                        <Box
-                          component={Link}
-                          to={setting.path}
-                          sx={{
-                            textDecoration: "none",
-                            color: "#10181B",
-                            "&:hover": { color: "var(--highlight-color)" },
-                          }}
-                        >
-                          {setting.name}
-                        </Box>
-                      </MenuItem>
-                    ))}
+                        {setting}
+                      </Button>
+                    </MenuItem>
+                  ))}
+                {/* Render login/register options if no user is authenticated */}
+                {!user &&
+                  settings.map((setting) => (
+                    <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                      <Box
+                        component={Link}
+                        to={setting.path}
+                        sx={{
+                          textDecoration: "none",
+                          color: "#10181B",
+                          "&:hover": { color: "var(--highlight-color)" },
+                        }}
+                      >
+                        {setting.name}
+                      </Box>
+                    </MenuItem>
+                  ))}
               </Menu>
             </Box>
           </Toolbar>
