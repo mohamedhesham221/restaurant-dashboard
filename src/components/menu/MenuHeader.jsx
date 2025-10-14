@@ -43,6 +43,7 @@ const MenuHeader = () => {
                 fontFamily: "var(--font)",
                 lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 },
                 textAlign: { xs: "center", sm: "left", md:"center" },
+                marginBottom: "1rem"
               }}
             >
               Explore Our Foods{" "}

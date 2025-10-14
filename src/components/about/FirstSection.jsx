@@ -58,7 +58,7 @@ const FirstSection = () => {
             variant="body2"
             sx={{
               color: "var(--primary-text)",
-              fontSize: { xs: "0.5rem", sm: "1rem" },
+              fontSize: { xs: "0.7rem", sm: "1.2rem" },
               fontFamily: "var(--font)",
               textAlign: "center",
               "&::after": {
@@ -82,7 +82,8 @@ const FirstSection = () => {
                 fontFamily: "var(--font)",
                 fontWeight: 700,
                 lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 },
-                textAlign: { xs: "center", sm: "left", md: "center" },
+                textAlign: { sm: "left", md: "center" },
+                marginBottom: "1rem"
               }}
             >
               What Our Guests Are Saying
@@ -92,7 +93,7 @@ const FirstSection = () => {
               sx={{
                 color: "var(--secondary-text)",
                 fontSize: "1rem",
-                textAlign: "center",
+                textAlign: { sm: "left", md: "center" },
                 fontFamily: "var(--font)",
               }}
             >

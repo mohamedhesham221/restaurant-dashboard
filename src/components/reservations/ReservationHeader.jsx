@@ -57,6 +57,7 @@ const ReservationHeader = () => {
             fontSize: { xs: "0.8rem", sm: "1.1rem" },
             fontFamily: "var(--font)",
             textAlign: "center",
+            marginBottom: "1rem"
           }}
         >
           Welcome to{" "}

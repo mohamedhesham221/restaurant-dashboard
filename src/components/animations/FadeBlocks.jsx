@@ -11,7 +11,7 @@ const FadeBlocks = ({
   const ref = React.useRef(null);
   const isInView = useInView(ref, {
     once: isOnce,
-    margin: "-150px 0px",
+    margin: "-50px 0px",
     amount: 0.4,
   });
 

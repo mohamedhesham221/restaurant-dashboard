@@ -10,7 +10,7 @@ const ContactHeader = () => {
         spacing={2}
         sx={{
           alignItems: "center",
-          paddingTop: { xs: "150px", md: 0 },
+          paddingTop: { xs: "100px", md: 0 },
         }}
       >
         <TextFade direction="up" staggerChildren={0.2} isOnce={false}>
@@ -23,6 +23,7 @@ const ContactHeader = () => {
               fontWeight: 700,
               lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 },
               textAlign: { xs: "center", sm: "left", md: "center" },
+                marginBottom: "1rem"
             }}
           >
             Contact Us{" "}
@@ -30,10 +31,11 @@ const ContactHeader = () => {
           <Typography
             variant="body2"
             sx={{
-              color: "var(--secondary-text)",
+              color: "var(--primary-text)",
               fontSize: { xs: "0.8rem", sm: "1.1rem" },
               fontFamily: "var(--font)",
               textAlign: "center",
+              opacity: 0.7
             }}
           >
             We're here to help! Whether it’s a reservation, catering inquiry, or

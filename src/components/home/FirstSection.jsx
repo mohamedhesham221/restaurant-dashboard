@@ -41,8 +41,8 @@ const FirstSection = () => {
             variant="body2"
             sx={{
               color: "var(--primary-text)",
-              fontSize: { xs: "0.5rem", sm: "1rem" },
-              textAlign: "center",
+              fontSize: { xs: "0.7rem", sm: "1.2rem" },
+              textAlign: {sm: "left", md:"center"},
               fontFamily: "var(--font)",
               "&::after": {
                 content: '""',
@@ -64,8 +64,9 @@ const FirstSection = () => {
                 fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
                 fontWeight: 700,
                 lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 },
-                textAlign: { xs: "center", sm: "left", md: "center" },
+                textAlign: { sm: "left", md: "center" },
                 fontFamily: "var(--font)",
+                marginBottom: "1rem",
               }}
             >
               Why people choose us?
@@ -76,6 +77,7 @@ const FirstSection = () => {
                 color: "var(--secondary-text)",
                 fontFamily: "var(--font)",
                 fontSize: { xs: "1rem", lg: "1.1rem" },
+                textAlign: {sm: "left", md: "center"}
               }}
             >
               Fresh ingredients, bold flavors, and a menu that satisfies every
@@ -129,6 +131,7 @@ const FirstSection = () => {
                     sx={{
                       color: "var(--secondary-text)",
                       fontFamily: "var(--font)",
+                      textAlign: "center"
                     }}
                   >
                     {item.description}{" "}
