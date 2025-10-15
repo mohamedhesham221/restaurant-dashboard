@@ -17,9 +17,9 @@ const MealsTableRows = ({
 		meal.name.toLowerCase().includes(query.toLowerCase())
 	);
 	// Filter meals with a rating of 4 or higher
-	const filteredTopRatedMeals = meals?.filter((meal) => meal.rate >= 4);
+	const filteredTopRatedMeals = meals?.filter((meal) => meal.rate >= 4.5);
 	// Filter meals with a rating below 4
-	const filteredLowRatedMeals = meals?.filter((meal) => meal.rate < 4);
+	const filteredLowRatedMeals = meals?.filter((meal) => meal.rate < 4.5);
 
 	return (
 		<>

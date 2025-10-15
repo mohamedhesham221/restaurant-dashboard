@@ -8,7 +8,7 @@ import {
 	Tooltip,
 	CartesianGrid,
 } from "recharts";
-import {Typography} from "@mui/material";
+import {Typography, Box} from "@mui/material";
 const data = [
   { day: "Sat", total: 550 },
   { day: "Sun", total: 480 },
@@ -23,7 +23,7 @@ const data = [
 const Sells = () => { 
 	return (
 		<>
-		<div style={{ width: "100%", maxWidth: "500px",margin: "0 auto" }}>
+		<Box sx={{ width: "100%", maxWidth: "550px"}} flexGrow={1}>
 		<Typography
 			variant="h4"
 			gutterBottom
@@ -53,7 +53,7 @@ const Sells = () => {
 			<Bar dataKey="total" fill="var(--highlight-color)" />
 			</BarChart>
 		</ResponsiveContainer>
-		</div>
+		</Box>
 		</>
 	);
 };

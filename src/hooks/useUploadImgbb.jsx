@@ -32,5 +32,5 @@ export function useUploadImageImgbb(apiKey) {
     }
   };
 
-  return { uploadImage, loading, error };
+  return { uploadImage, loading, error, setError };
 }

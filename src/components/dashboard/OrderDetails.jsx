@@ -1,38 +1,20 @@
 import * as React from "react";
-import { Divider, Stack, Typography, Box } from "@mui/material";
+import { Divider, Stack, Typography, Box , Modal, Chip, Paper} from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import PhoneIcon from "@mui/icons-material/Phone";
+import EmailIcon from "@mui/icons-material/Email";
+import PaymentIcon from "@mui/icons-material/Payment";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import HomeIcon from "@mui/icons-material/Home";
+import Button from "@mui/material/Button";
 import OrderDetailsMeals from "./OrderDetailsMeals";
-const orderStatus = [
-	{
-		label: "new",
-		color: "#2196f3",
-	},
-	{
-		label: "confirmed",
-		color: "#3f51b5",
-	},
-	{
-		label: "preparing",
-		color: "#ff9800",
-	},
-	{
-		label: "ready",
-		color: "#4caf50",
-	},
-	{
-		label: "delivered",
-		color: "#388e3c",
-	},
-	{
-		label: "cancelled",
-		color: "#f44336",
-	},
-];
-// Component to display detailed information about a specific order
-const OrderDetails = ({ order }) => { 
-  const [status, setOrderStatus] = React.useState("");
+import DetailItem from "./DetailItem";
 
-  // Log the order object for debugging purposes
-  console.log(order);
+// Define the possible order statuses with their corresponding colors
+// Component to display detailed information about a specific order
+const OrderDetails = ({ order, open, handleClose, statusColors }) => {
+  console.log("order status", order?.status);
 
   // Format the order creation date
   const date = order?.createdAt.toDate().toLocaleString("en-US");
@@ -40,6 +22,8 @@ const OrderDetails = ({ order }) => {
   // If no order is provided, display a message
   if (!order)
     return (
+  <Modal open={open} onClose={handleClose}>
+    <Box component={"div"} sx={{ width: "100%" }}>
       <Typography
         variant="h5"
         color="var(--secondary-text)"
@@ -48,159 +32,121 @@ const OrderDetails = ({ order }) => {
       >
         No Order Details
       </Typography>
+    </Box>
+  </Modal>
     );
 
   // Render the order details
   return (
     <>
-      <Box component={"div"} sx={{ width: "100%" }}>
-        {/* Header section with order ID and status */}
-        <Stack direction={"row"} justifyContent={"space-between"}>
+    <Modal open={open} onClose={handleClose}>
+      <Box
+        sx={{
+          width: { xs: "90%", md: "65%", lg: "50%" },
+          mx: "auto",
+          my: 6,
+          p: { xs: 3, md: 4 },
+          borderRadius: 4,
+          backgroundColor: "#fff",
+          boxShadow: "0 10px 35px rgba(0,0,0,0.15)",
+          outline: "none",
+          overflowY: "auto",
+          maxHeight: "85vh",
+        }}
+      >
+        {/* Header */}
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          mb={2}
+        >
           <Typography
-            variant="h2"
-            fontFamily={"var(--font)"}
-            fontSize={{ xs: "1rem", lg: "1.5rem" }}
-            gutterBottom
+            variant="h5"
+            fontFamily="var(--font)"
+            fontWeight={600}
           >
             Order #{order.id.slice(0, 5).toUpperCase()}
           </Typography>
-          <Typography
-            variant="body1"
-            color={
-              !status
-                ? orderStatus.find((item) => item.label === order.status)
-                : orderStatus.find((item) => item.label === status)
-            }
-            fontFamily={"var(--font)"}
-            textTransform={"capitalize"}
-            fontSize={{ xs: "0.8rem", lg: "1.2rem" }}
-            fontWeight={600}
-          >
-            {!status ? order.status : status}
-          </Typography>
+
+          <Chip
+            label={order.status}
+            sx={{
+              backgroundColor: statusColors.find((s) => s.label === order.status)?.color,
+              color: "#fff",
+              fontWeight: 600,
+              textTransform: "capitalize",
+              fontFamily: "var(--font)",
+            }}
+          />
         </Stack>
         <Divider />
 
-        {/* Section for order details */}
+        {/* Details */}
         <Typography
-          variant="body1"
-          fontFamily={"var(--font)"}
-          fontSize={{ xs: "0.8rem", lg: "1.2rem" }}
-          fontWeight={600}
-          align="left"
-          mt={4}
+          variant="subtitle1"
+          sx={{ mt: 3, mb: 2, fontWeight: 600, fontFamily: "var(--font)" }}
         >
-          Details
+          Customer Details
         </Typography>
 
-        {/* Customer and order information */}
-        <Stack direction={"row"} alignItems={"start"} spacing={4} mt={4}>
-          <Stack direction={"column"} alignItems={"start"} >
-            <Typography
-              variant="body1"
-              color="var(--secondary-text)"
-              fontFamily={"var(--font)"}
-              fontWeight={600}
-            >
-              Customer
-            </Typography>
-            <Typography variant="body2" fontFamily={"var(--font)"}>
-              {order.name}
-            </Typography>
+        <Paper
+          variant="outlined"
+          sx={{
+            p: 2.5,
+            borderRadius: 3,
+            backgroundColor: "#fafafa",
+          }}
+        >
+          <Stack direction="row" flexWrap="wrap" gap={2} >
+            <DetailItem icon={<PersonIcon />} label="Customer" value={order.name} />
+            <DetailItem icon={<PhoneIcon />} label="Mobile" value={order.phone} />
+            <DetailItem icon={<EmailIcon />} label="Email" value={order.email} />
+            <DetailItem icon={<PaymentIcon />} label="Payment" value={order.payment} />
+            <DetailItem icon={<CalendarMonthIcon />} label="Order Date" value={date} />
+            <DetailItem icon={<LocationOnIcon />} label="City" value={order.city} />
+            <DetailItem icon={<HomeIcon />} label="Address" value={order.address} />
           </Stack>
-          <Stack direction={"column"} alignItems={"start"}>
-            <Typography
-              variant="body1"
-              color="var(--secondary-text)"
-              fontFamily={"var(--font)"}
-              fontWeight={600}
-            >
-              Mobile
-            </Typography>
-            <Typography variant="body2" fontFamily={"var(--font)"}>
-              {order.phone}
-            </Typography>
-          </Stack>
-         
-          <Stack direction={"column"} alignItems={"start"}>
-            <Typography
-              variant="body1"
-              color="var(--secondary-text)"
-              fontFamily={"var(--font)"}
-              fontWeight={600}
-            >
-              Payment
-            </Typography>
-            <Typography variant="body2" fontFamily={"var(--font)"}>
-              {order.payment}
-            </Typography>
-          </Stack>
-        </Stack>
+        </Paper>
 
-        {/* Additional order details */}
-        <Stack direction={"row"} alignItems={"start"} spacing={4} mt={4}>
-          <Stack direction={"column"} alignItems={"start"}>
-            <Typography
-              variant="body1"
-              color="var(--secondary-text)"
-              fontFamily={"var(--font)"}
-              fontWeight={600}
-            >
-              Email Address
-            </Typography>
-            <Typography variant="body2" fontFamily={"var(--font)"}>
-              {order.email}
-            </Typography>
-          </Stack>
-          <Stack direction={"column"} alignItems={"start"}>
-            <Typography
-              variant="body1"
-              color="var(--secondary-text)"
-              fontFamily={"var(--font)"}
-              fontWeight={600}
-            >
-              City
-            </Typography>
-            <Typography variant="body2" fontFamily={"var(--font)"}>
-              {order.city}
-            </Typography>
-          </Stack>
-         
-          <Stack direction={"column"} alignItems={"start"}>
-            <Typography
-              variant="body1"
-              color="var(--secondary-text)"
-              fontFamily={"var(--font)"}
-              fontWeight={600}
-            >
-              Order Date
-            </Typography>
-            <Typography variant="body2" fontFamily={"var(--font)"}>
-              {date}
-            </Typography>
-          </Stack>
+        {/* Meals Section */}
+        <Typography
+          variant="subtitle1"
+          sx={{ mt: 4, mb: 2, fontWeight: 600, fontFamily: "var(--font)" }}
+        >
+          Ordered Meals
+        </Typography>
+
+        <Paper
+          variant="outlined"
+          sx={{
+            p: 2,
+            borderRadius: 3,
+            backgroundColor: "#fefefe",
+          }}
+        >
+          <OrderDetailsMeals
+            order={order}
+            orderStatus={statusColors}
+          />
+        </Paper>
+
+        {/* Footer buttons */}
+        <Stack direction="row" justifyContent="flex-end" spacing={2} mt={4}>
+          <Button
+            onClick={handleClose}
+            variant="outlined"
+            sx={{
+              textTransform: "none",
+              borderRadius: "10px",
+              fontFamily: "var(--font)",
+            }}
+          >
+            Close
+          </Button>
         </Stack>
-        <Stack direction={"column"} alignItems={"start"} mt={4}>
-            <Typography
-              variant="body1"
-              color="var(--secondary-text)"
-              fontFamily={"var(--font)"}
-              fontWeight={600}
-            >
-              Address
-            </Typography>
-            <Typography variant="body2" fontFamily={"var(--font)"}>
-              {order.address}
-            </Typography>
-          </Stack>
-        {/* Meals and status update section */}
-        <OrderDetailsMeals
-          order={order}
-          orderStatus={orderStatus}
-          status={status}
-          setOrderStatus={setOrderStatus}
-        />
       </Box>
+    </Modal>
     </>
   );
 };

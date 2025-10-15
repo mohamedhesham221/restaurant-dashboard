@@ -83,9 +83,9 @@ const RenderMealRow = ({ meal, styled, setModalType , setOpenModal, setMealId}) 
 					<Stack direction={"row"} spacing={1}>
 						<Typography
 							variant="body1"
-							color={meal.rate > 4 ? "#73946B" : " #E55050"}
+							color={meal.rate >= 4.5 ? "#73946B" : " #E55050"}
 						>
-							{meal.rate > 4 ? <TrendingUpIcon /> : <TrendingDownIcon />}
+							{meal.rate >= 4.5 ? <TrendingUpIcon /> : <TrendingDownIcon />}
 						</Typography>
 						<Typography variant="body1" fontFamily="var(--font)">{meal.rate}</Typography>
 					</Stack>

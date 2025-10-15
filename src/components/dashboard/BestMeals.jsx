@@ -22,7 +22,7 @@ const BestMeals = () => {
 
 	return (
 		<>
-			<div>
+			<Box sx={{ width: "100%", maxWidth: "550px", overflowY: "scroll", height: "400px" }} flexGrow={1}>
 				{/* Title for the Best Dishes section */}
 				<Typography variant="h4" gutterBottom align="left" fontFamily="var(--font)">
 					Best Dishes
@@ -43,7 +43,7 @@ const BestMeals = () => {
 						<TableBody>
 							{/* Filter meals with a rating greater than 4 and map them to table rows */}
 							{meals
-								.filter((meal) => meal.rate > 4)
+								.filter((meal) => meal.rate >= 4.5)
 								.map((meal) => (
 									<TableRow
 										key={meal.name}
@@ -103,7 +103,7 @@ const BestMeals = () => {
 						</TableBody>
 					</Table>
 				</TableContainer>
-			</div>
+			</Box>
 		</>
 	);
 };

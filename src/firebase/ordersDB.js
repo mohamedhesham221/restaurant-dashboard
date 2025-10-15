@@ -60,10 +60,13 @@ export const updateOrders = async ({ id, data }) => {
   const orderRef = doc(db, "orders", id)
   const orderSnap = await getDoc(orderRef);
   if (orderSnap.exists()) {
-    const { createdAt} = orderSnap.data(); // Extract the existing `createdAt`
+    const { createdAt } = orderSnap.data(); // Extract the existing `createdAt`
     await updateDoc(orderRef, { ...data, createdAt }); // Preserve `createdAt` while updating other fields
+        console.log("Order updated successfully:", id, data);
+
   } else {
     console.error("Order not found");
+    throw new Error("Order not found");
   }
 }
 

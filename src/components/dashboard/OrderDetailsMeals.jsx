@@ -1,34 +1,40 @@
 import * as React from "react";
 import {
-	Table,
-	TableBody,
-	TableContainer,
-	TableCell,
-	TableRow,
-	TableHead,
-	Paper,
-	Box,
-	Stack,
-	Typography,
-	FormControl,
-	InputLabel,
-	Select,
-	MenuItem,
-	Button,
+  Table,
+  TableBody,
+  TableContainer,
+  TableCell,
+  TableRow,
+  TableHead,
+  Paper,
+  Box,
+  Stack,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateOrders, deleteOrder } from "../../firebase/ordersDB";
 
 // Component to display order details and allow status updates or deletion
-const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
+const OrderDetailsMeals = ({ order, orderStatus }) => {
+  const [status, setOrderStatus] = React.useState("");
+
   const queryClient = useQueryClient();
 
   // Mutation to update order status
   const updateMutation = useMutation({
     mutationFn: ({ id, data }) => updateOrders({ id, data }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["orders"] });
+      queryClient.invalidateQueries(["orders"]);
+      console.log("Updated!");
+    },
+    onError: (error) => {
+      console.error("Mutation failed:", error);
     },
   });
 
@@ -36,6 +42,9 @@ const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
   const deleteMutation = useMutation({
     mutationFn: deleteOrder,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: "orders" }),
+    onError: (error) => {
+      console.error("Mutation failed:", error);
+    },
   });
 
   // Handle delete action
@@ -46,6 +55,9 @@ const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
   // Handle status change
   const handleChange = (e) => {
     const newStatus = e.target.value;
+    console.log("🔹 handleChange triggered, new status:", newStatus);
+    console.log("🔹 Order ID:", order?.id);
+
     setOrderStatus(newStatus);
     const data = { status: newStatus };
     updateMutation.mutate({ id: order.id, data });
@@ -65,11 +77,19 @@ const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
         <Table sx={{ minWidth: 600 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontSize: "1.5rem", fontFamily: "var(--font)" }}>Meal</TableCell>
-              <TableCell sx={{ fontSize: "1.5rem", fontFamily: "var(--font)" }} align="center">
+              <TableCell sx={{ fontSize: "1.5rem", fontFamily: "var(--font)" }}>
+                Meal
+              </TableCell>
+              <TableCell
+                sx={{ fontSize: "1.5rem", fontFamily: "var(--font)" }}
+                align="center"
+              >
                 Quantity
               </TableCell>
-              <TableCell sx={{ fontSize: "1.5rem", fontFamily: "var(--font)" }} align="center">
+              <TableCell
+                sx={{ fontSize: "1.5rem", fontFamily: "var(--font)" }}
+                align="center"
+              >
                 Price
               </TableCell>
             </TableRow>
@@ -90,7 +110,7 @@ const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
                     columnGap: "10px",
                     fontSize: "1rem",
                     color: "var(--highlight-color)",
-                    fontFamily: "var(--font)"
+                    fontFamily: "var(--font)",
                   }}
                 >
                   {/* Display meal image and name */}
@@ -118,7 +138,7 @@ const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
                       variant="body1"
                       sx={{
                         color: "var(--secondary-text)",
-                        fontFamily: "var(--font)"
+                        fontFamily: "var(--font)",
                       }}
                     >
                       {order.quantity}
@@ -130,11 +150,11 @@ const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
                   sx={{
                     fontSize: "1.5rem",
                     color: "var(--highlight-color)",
-                    fontFamily: "var(--font)"
+                    fontFamily: "var(--font)",
                   }}
                 >
-                  {/* Display total cost for the order */}
-                  ${(order.quantity * order.price).toFixed(2)}
+                  {/* Display total cost for the order */}$
+                  {(order.quantity * order.price).toFixed(2)}
                 </TableCell>
               </TableRow>
             ))}
@@ -147,7 +167,12 @@ const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
         <FormControl
           sx={{ marginTop: "50px", width: { xs: "100%", lg: "70%" } }}
         >
-          <InputLabel id="demo-simple-select-label" sx={{fontFamily: "var(--font)"}}>Status</InputLabel>
+          <InputLabel
+            id="demo-simple-select-label"
+            sx={{ fontFamily: "var(--font)" }}
+          >
+            Status
+          </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -158,7 +183,11 @@ const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
             {/* Map through available statuses */}
             {orderStatus.map((status, index) => {
               return (
-                <MenuItem key={index} value={status.label} sx={{fontFamily: "var(--font)"}}>
+                <MenuItem
+                  key={index}
+                  value={status.label}
+                  sx={{ fontFamily: "var(--font)" }}
+                >
                   {status.label}
                 </MenuItem>
               );
@@ -176,7 +205,7 @@ const OrderDetailsMeals = ({ order, orderStatus, status, setOrderStatus }) => {
             color: "var(--primary-text)",
             textTransform: "none",
             width: { xs: "100%", lg: "30%" },
-            fontFamily: "var(--font)"
+            fontFamily: "var(--font)",
           }}
         >
           Delete Order
