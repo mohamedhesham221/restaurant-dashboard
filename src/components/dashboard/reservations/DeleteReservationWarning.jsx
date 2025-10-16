@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import CloseIcon from '@mui/icons-material/Close';
-import { deleteReservation } from "../../firebase/reservationDB";
+import { deleteReservation } from "../../../firebase/reservationDB";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const style = {
