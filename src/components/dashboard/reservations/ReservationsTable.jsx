@@ -1,82 +1,83 @@
 import * as React from "react";
 import {
-	Box,
-	Container,
-	Stack,
-	Table,
-	TableContainer,
-	TableBody,
-	TableCell,
-	TableRow,
-	TableHead,
-	TextField,
-	FormControl,
-	Typography,
-	IconButton,
-	Paper,
-	tableCellClasses,
-	Select,
-	OutlinedInput,
-	MenuItem,
-	Modal,
+  Box,
+  Container,
+  Stack,
+  Table,
+  TableContainer,
+  TableBody,
+  TableCell,
+  TableRow,
+  TableHead,
+  TextField,
+  FormControl,
+  Typography,
+  IconButton,
+  Paper,
+  tableCellClasses,
+  Select,
+  OutlinedInput,
+  MenuItem,
+  Modal,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import ReservationForm from "../reservations/ReservationForm";
+import ReservationForm from "../../reservations/ReservationForm";
 import { styled } from "@mui/material/styles";
-import { useReservations } from "../../hooks/useReservations";
-import Loading from "../../components/Loading";
+import { useReservations } from "../../../hooks/useReservations";
+import Loading from "../../Loading";
 import ReservationsRows from "./ReservationsRows";
-import DeleteReservationWarning from "./DeleteReservationWarning";
+import DeleteReservationWarning from "../DeleteReservationWarning";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-	[`&.${tableCellClasses.head}`]: {
-		backgroundColor: "#10181B",
-		color: theme.palette.common.white,
-	},
-	[`&.${tableCellClasses.body}`]: {
-		fontSize: 14,
-	},
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#10181B",
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
 }));
 
 const style = {
-	position: "absolute",
-	top: "60%",
-	left: "50%",
-	transform: "translate(-50%, -50%)",
-	width: { xs: 300, md: 400, lg: 600 },
-	minHeight: 300,
-	bgcolor: "background.paper",
-	border: "2px solid #000",
-	boxShadow: 24,
-	p: 4,
+  position: "absolute",
+  top: "60%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: { xs: 300, md: 400, lg: 600 },
+  minHeight: 300,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
 };
 
 // Component to display and manage reservations table with search, add, edit, and delete functionality
 const ReservationsTable = () => {
-	const { data: reservations, isLoading } = useReservations(); // Fetch reservations data using custom hook
-	const [openModal, setOpenModal] = React.useState(false); // State to manage modal visibility
-  const [filterQuery, setFilterQuery] = React.useState("")
-	const [openDeleteModal, setOpenDeleteModal] = React.useState(false); // State to manage delete confirmation modal
-	const [formType, setFormType] = React.useState("add"); // State to determine form type (add/edit)
-	const [reservationId, setReservationId] = React.useState(null); // State to store selected reservation ID
-	const handleModalOpen = () => setOpenModal(true); // Function to open modal
-	const handleModalClose = () => setOpenModal(false); // Function to close modal
-	const [query, setQuery] = React.useState(""); // State to manage search query
-	const handleSearch = (e) => {
-		setQuery(e.target.value); // Update search query on input change
-	};
+  const { data: reservations, isLoading } = useReservations(); // Fetch reservations data using custom hook
+  const [openModal, setOpenModal] = React.useState(false); // State to manage modal visibility
+  const [filterQuery, setFilterQuery] = React.useState("");
+  const [openDeleteModal, setOpenDeleteModal] = React.useState(false); // State to manage delete confirmation modal
+  const [formType, setFormType] = React.useState("add"); // State to determine form type (add/edit)
+  const [reservationId, setReservationId] = React.useState(null); // State to store selected reservation ID
+  const handleModalOpen = () => setOpenModal(true); // Function to open modal
+  const handleModalClose = () => setOpenModal(false); // Function to close modal
+  const [query, setQuery] = React.useState(""); // State to manage search query
+  const handleSearch = (e) => {
+    setQuery(e.target.value); // Update search query on input change
+  };
 
-	if (isLoading) return <Loading />; // Show loading spinner while data is being fetched
+  if (isLoading) return <Loading />; // Show loading spinner while data is being fetched
   return (
     <>
       <Container maxWidth="lg">
-      <Typography variant="h2" textAlign={"start"} gutterBottom>Reservations</Typography>
+        <Typography variant="h2" textAlign={"start"} gutterBottom>
+          Reservations
+        </Typography>
         <Stack
           direction={{ xs: "column", lg: "row" }}
           spacing={2}
           justifyContent={"space-between"}
           alignItems={"center"}
         >
-          
           <Box component={"form"}>
             <FormControl>
               <TextField
@@ -90,7 +91,10 @@ const ReservationsTable = () => {
             </FormControl>
           </Box>
           <Box component={"form"}>
-            <FormControl sx={{ width: { xs: "100%", lg: "300px" } }} variant="standard">
+            <FormControl
+              sx={{ width: { xs: "100%", lg: "300px" } }}
+              variant="standard"
+            >
               <Select
                 displayEmpty
                 input={<OutlinedInput />}

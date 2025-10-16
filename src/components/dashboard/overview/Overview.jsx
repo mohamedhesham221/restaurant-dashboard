@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Container, Stack } from '@mui/material';
 import Sells from './Sells';
-import TotalBalance from './TotalBalance';
-import CustomersCount from './CustomersCount';
 import BestMeals from './BestMeals';
 import Statistics from './Statistics';
 const Overview = () => {

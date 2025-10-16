@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateOrders, deleteOrder } from "../../firebase/ordersDB";
+import { updateOrders, deleteOrder } from "../../../firebase/ordersDB";
 
 // Component to display order details and allow status updates or deletion
 const OrderDetailsMeals = ({ order, orderStatus }) => {

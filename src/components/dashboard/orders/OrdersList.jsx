@@ -8,8 +8,8 @@ import {
   Stack,
   Chip,
 } from "@mui/material";
-import { useOrders } from "../../hooks/useOrders";
-import Loading from "../../components/Loading";
+import { useOrders } from "../../../hooks/useOrders";
+import Loading from "../../Loading";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import PaymentIcon from "@mui/icons-material/Payment";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
@@ -53,7 +53,8 @@ const OrdersList = ({ setCurrentOrder, handleOpen, statusColors }) => {
                     right: 10,
                     fontWeight: "600",
                     fontFamily: "var(--font)",
-                    color: statusColors.find((s) => s.label === order.status)?.color
+                    color: statusColors.find((s) => s.label === order.status)
+                      ?.color,
                   }}
                 />
                 <Typography

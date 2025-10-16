@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { addMeal, updateMeal, getMealById } from "../../firebase/mealsDB";
+import { addMeal, updateMeal, getMealById } from "../../../firebase/mealsDB";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Box,
@@ -11,7 +11,7 @@ import {
   Stack,
   Modal,
 } from "@mui/material";
-import { useUploadImageImgbb } from "../../hooks/useUploadImgbb";
+import { useUploadImageImgbb } from "../../../hooks/useUploadImgbb";
 // AddModal component handles the functionality of adding a new meal
 // It uses react-hook-form for form handling and react-query for data mutation
 // ModalForm component handles both adding and editing meals
@@ -172,7 +172,10 @@ const ModalForm = ({
                     type="file"
                     focused
                     sx={{ fontFamily: "var(--font)" }}
-                    {...register("img", { required: modalType === "add" ? "Image is required" : false })}
+                    {...register("img", {
+                      required:
+                        modalType === "add" ? "Image is required" : false,
+                    })}
                     error={!!errors.img}
                     helperText={errors.img?.message}
                     fullWidth
