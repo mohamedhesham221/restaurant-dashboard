@@ -26,7 +26,7 @@ import { styled } from "@mui/material/styles";
 import { useReservations } from "../../../hooks/useReservations";
 import Loading from "../../Loading";
 import ReservationsRows from "./ReservationsRows";
-import DeleteReservationWarning from "../DeleteReservationWarning";
+import DeleteReservationWarning from "./DeleteReservationWarning";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#10181B",

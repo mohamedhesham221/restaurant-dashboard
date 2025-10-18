@@ -40,7 +40,6 @@ const ModalForm = ({
 
   const { img, name, price, ordersCount, serves, time, rate } =
     dataWillEdit || {};
-  console.log(dataWillEdit);
 
   const {
     register,
