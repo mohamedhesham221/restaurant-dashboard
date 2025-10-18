@@ -83,6 +83,7 @@ const ReservationsTable = () => {
               <TextField
                 label="Search"
                 variant="standard"
+                placeholder="Type customer name"
                 size="small"
                 sx={{ width: { xs: "100%", lg: "300px" } }}
                 value={query}
