@@ -55,9 +55,12 @@ const StuffTable = () => {
   const [modalType, setModalType] = React.useState("add");
   const [employeeId, setEmployeeId] = React.useState(null);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
+  const [query, setQuery] = React.useState(""); // State to manage search query
   const handleModalOpen = () => setOpenModal(true);
   const handleModalClose = () => setOpenModal(false);
-
+const handleSearch = (e) => {
+    setQuery(e.target.value); // Update search query on input change
+  };
   if (isLoading) return <Loading />; // Show loading spinner while data is being fetched
 
   return (
@@ -72,6 +75,19 @@ const StuffTable = () => {
           <Typography variant="h2" textAlign={"start"} gutterBottom>
             Stuff
           </Typography>
+          <Box component={"form"}>
+            <FormControl>
+              <TextField
+                label="Search"
+                variant="standard"
+                placeholder="Type name or role"
+                size="small"
+                sx={{ width: { xs: "100%", lg: "300px" } }}
+                value={query}
+                onChange={handleSearch}
+              />
+            </FormControl>
+          </Box>
           <Button
             variant="contained"
             onClick={() => {
@@ -92,12 +108,16 @@ const StuffTable = () => {
           </Button>
         </Stack>
         {stuff.length === 0 || !stuff ? (
-          <Typography variant="h2" textAlign={"center"} sx={{
-            marginTop: "6rem",
-            fontSize: "2rem",
-            color: "var(--secondary-text)",
-            fontFamily: "var(--font)"
-          }}>
+          <Typography
+            variant="h2"
+            textAlign={"center"}
+            sx={{
+              marginTop: "6rem",
+              fontSize: "2rem",
+              color: "var(--secondary-text)",
+              fontFamily: "var(--font)",
+            }}
+          >
             Not Employee yet!!
           </Typography>
         ) : (
@@ -157,6 +177,7 @@ const StuffTable = () => {
                   setOpenModal={setOpenModal}
                   stuff={stuff}
                   styled={styled}
+                  query={query}
                   setEmployeeId={setEmployeeId}
                   setFormType={setModalType}
                   handleModalOpen={handleModalOpen}
