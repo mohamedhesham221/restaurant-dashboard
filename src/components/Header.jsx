@@ -53,9 +53,10 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 // Admin email from environment variables
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
+const DEMO_EMAIL = import.meta.env.VITE_DEMO_EMAIL;
 const Header = () => {
   // Check if the current user is an admin
-  const isAdmin = auth.currentUser?.email === ADMIN_EMAIL;
+  const isAdmin = auth.currentUser?.email === ADMIN_EMAIL || auth.currentUser?.email === DEMO_EMAIL;
 
   // Hook for navigation
   const navigate = useNavigate();
