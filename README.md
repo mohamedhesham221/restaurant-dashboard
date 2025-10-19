@@ -26,7 +26,8 @@ If you'd like to explore the dashboard, you can log in using the demo account be
 📧 **Email:** <demo.admin@gmail.com>  
 🔑 **Password:** Demo2025  
 
-> ⚠️ This is a *read-only demo account.*  
+> ⚠️ This is a *read-only demo account.*
+> If you wish to test full functionality, please contact me for a temporary admin account.
 
 ## Pages & Components
 
