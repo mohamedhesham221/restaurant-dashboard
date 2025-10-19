@@ -85,7 +85,7 @@ const LowStockItems = () => {
                       <Typography>{row.quantity}</Typography>
                       <LinearProgress
                         variant="determinate"
-                        value={Math.min(row.quantity * 5, 100)}
+                        value={(row.quantity / row.maxQuantity) * 100}
                         color="error"
                         sx={{
                           height: 6,

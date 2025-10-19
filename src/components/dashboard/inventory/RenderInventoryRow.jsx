@@ -99,6 +99,8 @@ const RenderInventoryRow = ({
             )}
           </Box>
         </StyledTableCell>
+        <StyledTableCell align="center">{item.maxQuantity}</StyledTableCell>
+
         <StyledTableCell align="center">{updatedDate()}</StyledTableCell>
         <StyledTableCell align="center">
           <ButtonGroup>

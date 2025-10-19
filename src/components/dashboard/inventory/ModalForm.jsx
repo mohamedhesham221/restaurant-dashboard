@@ -49,7 +49,6 @@ const ModalForm = ({
 }) => {
   const queryClient = useQueryClient();
   const [dataWillEdit, setDataWillEdit] = React.useState({});
-
   React.useEffect(() => {
     if (!itemId || itemId.length === 0) return;
     const getItemDataWillEdit = async () => {
@@ -58,8 +57,7 @@ const ModalForm = ({
     };
     getItemDataWillEdit();
   }, [itemId]);
-
-  const { item, category, quantity, unit, status, createdAt } =
+  const { item, category, quantity, unit, status, maxQuantity, createdAt } =
     dataWillEdit || {};
 
   const {
@@ -67,6 +65,7 @@ const ModalForm = ({
     handleSubmit,
     reset,
     control,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -75,6 +74,7 @@ const ModalForm = ({
       quantity: quantity || "",
       unit: unit || "",
       status: status || "",
+      maxQuantity: maxQuantity || "",
       createdAt: createdAt || "",
     },
   });
@@ -87,6 +87,7 @@ const ModalForm = ({
         quantity,
         unit,
         status,
+        maxQuantity,
         createdAt,
       });
     } else {
@@ -96,10 +97,21 @@ const ModalForm = ({
         quantity: "",
         unit: "",
         status: "",
+        maxQuantity: "",
         createdAt: "",
       });
     }
-  }, [category, createdAt, item, itemId, quantity, reset, status, unit]);
+  }, [
+    category,
+    createdAt,
+    item,
+    itemId,
+    quantity,
+    maxQuantity,
+    reset,
+    status,
+    unit,
+  ]);
 
   const addMutation = useMutation({
     mutationFn: addItem,
@@ -114,6 +126,16 @@ const ModalForm = ({
       setItemId(null);
     },
   });
+  /**
+   * Handle submission of the inventory modal form.
+   *
+   * Aborts if quantity > maxQuantity.
+   * If modalType is "add" it triggers addMutation.mutate,
+   * otherwise it triggers updateMutation.mutate with { id, data }, then closes the modal and logs the action.
+   *
+   * @param {Object} data - Form data to submit.
+   * @returns {Promise<void>} Resolves after performing the mutation and UI updates.
+   */
   const onSubmit = async (data) => {
     if (modalType === "add") {
       addMutation.mutate(data);
@@ -141,7 +163,7 @@ const ModalForm = ({
             component="h2"
             sx={{ fontFamily: "var(--font)" }}
           >
-            {modalType === "add new item" ? "Add" : `Edit ${item}`}
+            {modalType === "add" ? "Add new item" : `Edit ${item}`}
           </Typography>
           <Box
             component={"form"}
@@ -164,63 +186,45 @@ const ModalForm = ({
                   modalType === "edit" ? { inputLabel: { shrink: true } } : ""
                 }
               />
-              {/* Category Select Box */}
-              <FormControl fullWidth error={!!errors.category}>
-                <InputLabel
-                  slotProps={
-                    modalType === "edit" ? { inputLabel: { shrink: true } } : ""
-                  }
-                >
-                  Category
-                </InputLabel>
-                <Controller
-                  name="category"
-                  control={control}
-                  rules={{ required: "Category is required" }}
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      value={field.value || ""}
-                      label="Category"
-                    >
-                      <MenuItem value="" disabled>
-                        <em>Choose Category</em>
-                      </MenuItem>
-                      {categoryOpt.map((opt) => (
-                        <MenuItem key={opt} value={opt}>
-                          {opt.charAt(0).toUpperCase() + opt.slice(1)}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  )}
-                />
-                <FormHelperText>{errors.category?.message}</FormHelperText>
-              </FormControl>
-
-              {/**quantity and unit row */}
+              {/* Category and Unit Select Box */}
               <Stack
                 spacing={1}
                 justifyContent={"space-between"}
                 direction={{ sm: "column", md: "row" }}
               >
-                {/* Input field for item quantity*/}
-                <TextField
-                  label="Quantity"
-                  variant="outlined"
-                  name="quantity"
-                  type="number"
-                  sx={{ fontFamily: "var(--font)" }}
-                  {...register("quantity", {
-                    required: "Quantity is required",
-                  })}
-                  error={!!errors.quantity}
-                  helperText={errors.quantity?.message}
-                  fullWidth
-                  slotProps={
-                    modalType === "edit" ? { inputLabel: { shrink: true } } : ""
-                  }
-                />
-                {/**Unit select box */}
+                <FormControl fullWidth error={!!errors.category}>
+                  <InputLabel
+                    slotProps={
+                      modalType === "edit"
+                        ? { inputLabel: { shrink: true } }
+                        : ""
+                    }
+                  >
+                    Category
+                  </InputLabel>
+                  <Controller
+                    name="category"
+                    control={control}
+                    rules={{ required: "Category is required" }}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        value={field.value || ""}
+                        label="Category"
+                      >
+                        <MenuItem value="" disabled>
+                          <em>Choose Category</em>
+                        </MenuItem>
+                        {categoryOpt.map((opt) => (
+                          <MenuItem key={opt} value={opt}>
+                            {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                  <FormHelperText>{errors.category?.message}</FormHelperText>
+                </FormControl>
                 <FormControl fullWidth error={!!errors.unit}>
                   <InputLabel
                     slotProps={
@@ -250,6 +254,53 @@ const ModalForm = ({
                   />
                   <FormHelperText>{errors.category?.message}</FormHelperText>
                 </FormControl>
+              </Stack>
+
+              {/**quantity and unit row */}
+              <Stack
+                spacing={1}
+                justifyContent={"space-between"}
+                direction={{ sm: "column", md: "row" }}
+              >
+                {/* Input field for item quantity*/}
+                <TextField
+                  label="Quantity"
+                  variant="outlined"
+                  name="quantity"
+                  type="number"
+                  sx={{ fontFamily: "var(--font)" }}
+                  {...register("quantity", {
+                    required: "Quantity is required",
+                  })}
+                  error={!!errors.quantity}
+                  helperText={errors.quantity?.message}
+                  fullWidth
+                  slotProps={{
+                    input: {
+                      inputProps: {
+                        min: 0,
+                        max: watch("maxQuantity") || undefined,
+                      },
+                    },
+                    inputLabel:
+                      modalType === "edit" ? { shrink: true } : undefined,
+                  }}
+                />
+                {/**Max Quantity select box */}
+                <TextField
+                  label="Max Quantity"
+                  variant="outlined"
+                  name="maxQuantity"
+                  type="number"
+                  sx={{ fontFamily: "var(--font)" }}
+                  {...register("maxQuantity", { valueAsNumber: true })}
+                  error={!!errors.maxQuantity}
+                  helperText={errors.maxQuantity?.message}
+                  fullWidth
+                  slotProps={
+                    modalType === "edit" ? { inputLabel: { shrink: true } } : ""
+                  }
+                />
               </Stack>
 
               {/* radio field for Item status */}
@@ -282,7 +333,7 @@ const ModalForm = ({
                 />
                 <FormHelperText>{errors.status?.message}</FormHelperText>
               </FormControl>
-                  {/**submit button */}
+              {/**submit button */}
               <Button
                 variant="contained"
                 type="submit"

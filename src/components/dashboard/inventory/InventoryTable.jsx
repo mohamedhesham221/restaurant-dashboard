@@ -156,6 +156,12 @@ const InventoryTable = () => {
                     align="center"
                     sx={{ fontFamily: "var(--font)" }}
                   >
+                    Max Quantity
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align="center"
+                    sx={{ fontFamily: "var(--font)" }}
+                  >
                     Last Updated
                   </StyledTableCell>
                   <StyledTableCell

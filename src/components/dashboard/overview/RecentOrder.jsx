@@ -89,6 +89,7 @@ const RecentOrder = () => {
                     {order.orderBag.map((o) => {
                       return (
                         <Typography
+                        key={o.name}
                           variant="body2"
                           color="var(--highlight-color)"
                         >
