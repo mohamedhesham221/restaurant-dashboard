@@ -28,7 +28,7 @@ const style = {
 export default function DeleteReservationWarning({reservationId,openDeleteModal, setOpenDeleteModal}) {
   // Initialize query client for react-query
   const queryClient = useQueryClient();
-
+// Mutation to handle reservation deletion
   const deleteMutation = useMutation({
     mutationFn: deleteReservation,
     onSuccess: () => queryClient.invalidateQueries({queryKey: "reservations"})

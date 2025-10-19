@@ -29,7 +29,7 @@ const style = {
 export default function DeleteItemWarning({itemId,openDeleteModal, setOpenDeleteModal}) {
     // Initialize query client for react-query
     const queryClient = useQueryClient();
-  
+  // Setup mutation for deleting item
   const deleteMutation = useMutation({
       mutationFn: deleteItem,
       onSuccess: () => queryClient.invalidateQueries(["inventory"])

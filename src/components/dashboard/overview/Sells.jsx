@@ -9,6 +9,7 @@ import {
 	CartesianGrid,
 } from "recharts";
 import {Typography, Box} from "@mui/material";
+// Sample data for daily sales
 const data = [
   { day: "Sat", total: 550 },
   { day: "Sun", total: 480 },

@@ -37,10 +37,10 @@ const ModalForm = ({
     };
     getMealDataWillEdit();
   }, [mealId]);
-
+// Destructure meal data for default form values
   const { img, name, price, ordersCount, serves, time, rate } =
     dataWillEdit || {};
-
+// Initialize react-hook-form with default values
   const {
     register,
     handleSubmit,

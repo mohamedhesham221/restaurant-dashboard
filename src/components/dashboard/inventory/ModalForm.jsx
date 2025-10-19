@@ -48,6 +48,7 @@ const ModalForm = ({
   modalType,
 }) => {
   const queryClient = useQueryClient();
+  // State to hold item data for editing
   const [dataWillEdit, setDataWillEdit] = React.useState({});
   React.useEffect(() => {
     if (!itemId || itemId.length === 0) return;
@@ -57,9 +58,11 @@ const ModalForm = ({
     };
     getItemDataWillEdit();
   }, [itemId]);
+  // Destructure item data for form default values
   const { item, category, quantity, unit, status, maxQuantity, createdAt } =
     dataWillEdit || {};
 
+    // Initialize react-hook-form
   const {
     register,
     handleSubmit,
@@ -113,12 +116,14 @@ const ModalForm = ({
     unit,
   ]);
 
+  // Mutation for adding a new item
   const addMutation = useMutation({
     mutationFn: addItem,
     onSuccess: () => {
       queryClient.invalidateQueries(["inventory"]);
     },
   });
+  // Mutation for updating an existing item
   const updateMutation = useMutation({
     mutationFn: ({ id, data }) => updateItem({ id, data }),
     onSuccess: () => {

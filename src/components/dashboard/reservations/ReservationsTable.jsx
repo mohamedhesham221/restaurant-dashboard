@@ -55,6 +55,7 @@ const style = {
 // Component to display and manage reservations table with search, add, edit, and delete functionality
 const ReservationsTable = () => {
   const { data: reservations, isLoading } = useReservations(); // Fetch reservations data using custom hook
+  // Implement pagination using custom hook
    const {
       pagedItems,
       handleChangePage,
@@ -216,6 +217,7 @@ const ReservationsTable = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        {/* Pagination controls */}
         <TablePagination
                   rowsPerPageOptions={[5, 10, 25]}
                   count={reservations.length}

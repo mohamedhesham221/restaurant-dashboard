@@ -4,8 +4,9 @@ import {getReservations, subscribeToReservations} from "../firebase/reservationD
 
 
 export const useReservations = () => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient();  // Access the QueryClient instance
 
+  // Set up real-time subscription to reservations
   useEffect(() => {
     const unsubscribe = subscribeToReservations((reservations) => {
       queryClient.setQueryData(["reservations"], reservations);
@@ -14,6 +15,7 @@ export const useReservations = () => {
     return () => unsubscribe(); 
   }, [queryClient]);
 
+  // Fetch reservations using React Query
   return useQuery({
     queryKey: ["reservations"],
     queryFn: getReservations,

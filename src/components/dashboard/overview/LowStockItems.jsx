@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 
 const LowStockItems = () => {
-  const { data: inventory, isLoading } = useInventory();
+  const { data: inventory, isLoading } = useInventory(); // Custom hook to fetch inventory data
   if (isLoading) return <Loading />;
 
 /**

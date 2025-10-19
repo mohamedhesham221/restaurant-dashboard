@@ -49,7 +49,8 @@ const style = {
 };
 
 const InventoryTable = () => {
-  const { data: inventory, isLoading } = useInventory();
+  const { data: inventory, isLoading } = useInventory(); // Fetch inventory data
+  // Pagination hook
   const {
     pagedItems,
     handleChangePage,
@@ -195,7 +196,7 @@ const InventoryTable = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-
+            {/* Pagination controls */}
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               count={inventory.length}
@@ -208,6 +209,7 @@ const InventoryTable = () => {
           </>
         )}
       </Container>
+      {/* Modal form for adding/editing inventory */}
       <ModalForm
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -217,6 +219,7 @@ const InventoryTable = () => {
         setItemId={setItemId}
         modalType={modalType}
       />
+      {/* Delete item confirmation modal */}
       <DeleteItemWarning
         itemId={itemId}
         openDeleteModal={openDeleteModal}

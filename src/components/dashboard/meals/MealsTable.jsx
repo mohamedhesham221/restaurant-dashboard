@@ -58,6 +58,7 @@ const style = {
 // MealsTable component displays a searchable and filterable table of meals
 const MealsTable = () => {
   const { data: meals, isLoading } = useMeals(); // Fetch meals data using custom hook
+  // Pagination hook to manage table pagination
   const {
     pagedItems,
     handleChangePage,
@@ -217,6 +218,7 @@ const MealsTable = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        {/* Pagination controls */}
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           count={meals.length}
@@ -227,6 +229,7 @@ const MealsTable = () => {
           component="div"
         />
       </Container>
+      {/* Modal form for adding/editing meals */}
       <ModalForm
         openModal={openModal}
         setOpenModal={setOpenModal}

@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 // Component to display the best meals based on their rating and orders
 const BestMeals = () => {
-	const { data: meals, isLoading } = useMeals();
+	const { data: meals, isLoading } = useMeals(); // Custom hook to fetch meals data
 
 	// Show loading message while data is being fetched
 	if (isLoading) return <p>Loading . . .</p>;

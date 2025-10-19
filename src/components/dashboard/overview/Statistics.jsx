@@ -6,6 +6,8 @@ import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+
+// List of statistics to be displayed in the dashboard
 const statisticsList = [
   {
     title: "Total Menus",

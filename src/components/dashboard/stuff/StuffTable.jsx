@@ -26,6 +26,7 @@ import StuffRows from "./StuffRows";
 import ModalForm from "./ModalForm";
 import DeleteEmployeeWarning from "./DeleteEmployeeWarning";
 
+// Styled Table Cell
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#10181B",
@@ -35,7 +36,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }));
-
+// Modal style
 const style = {
   position: "absolute",
   top: "50%",
@@ -49,7 +50,8 @@ const style = {
 };
 
 const StuffTable = () => {
-  const { data: stuff, isLoading } = useStuff();
+  const { data: stuff, isLoading } = useStuff(); // Fetch stuff data
+  // Pagination hook
   const {
     pagedItems,
     handleChangePage,
@@ -193,6 +195,7 @@ const StuffTable = () => {
             </Table>
           </TableContainer>
         )}
+        {/* Pagination controls */}
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           count={stuff.length}
@@ -203,7 +206,7 @@ const StuffTable = () => {
           component="div"
         />
       </Container>
-
+      {/* Modal form for adding/editing stuff */}
       <ModalForm
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -213,6 +216,7 @@ const StuffTable = () => {
         setEmployeeId={setEmployeeId}
         modalType={modalType}
       />
+      {/* Delete employee confirmation modal */}
       <DeleteEmployeeWarning
         employeeId={employeeId}
         openDeleteModal={openDeleteModal}

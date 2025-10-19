@@ -22,9 +22,9 @@ import { updateOrders, deleteOrder } from "../../../firebase/ordersDB";
 
 // Component to display order details and allow status updates or deletion
 const OrderDetailsMeals = ({ order, orderStatus }) => {
-  const [status, setOrderStatus] = React.useState("");
+  const [status, setOrderStatus] = React.useState(""); // State to track the current order status
 
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient(); // React Query client for cache management
 
   // Mutation to update order status
   const updateMutation = useMutation({

@@ -26,7 +26,7 @@ const statusColors = [
 ];
 
 const RecentOrder = () => {
-  const { data: orders, isLoading } = useOrders();
+  const { data: orders, isLoading } = useOrders(); // Custom hook to fetch orders data
 
   if (isLoading) return <Loading />;
   return (
