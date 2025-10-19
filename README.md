@@ -1,7 +1,5 @@
 # Butcha Restaurant Dashboard
 
-![Meat Meals Restaurant](./src/assets/logo.png#gh-light-mode-only){ width=50 height=50 style="display: block; margin: 0 auto" }
-
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
