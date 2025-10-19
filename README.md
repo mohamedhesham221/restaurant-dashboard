@@ -23,6 +23,16 @@ A comprehensive restaurant management system designed specifically for meat-focu
 - 📱 **Responsive Design** works perfectly on all devices
 - 🏷️ **Meta Tags Control** dynamic website title changes when navigating between pages
 
+## 🧪 Demo Access
+
+If you'd like to explore the dashboard, you can log in using the demo account below 👇
+
+📧 **Email:** <demo.admin@gmail.com>  
+🔑 **Password:** Demo2025  
+
+> ⚠️ This is a *read-only demo account.*  
+> Please don’t modify or delete data — it’s shared with other users testing the project.
+
 ## Pages & Components
 
 | Page/Component | Description |
@@ -35,6 +45,7 @@ A comprehensive restaurant management system designed specifically for meat-focu
 | **Dashboard** | Admin/staff panel for restaurant management and analytics |
 | **Login Page** | Secure authentication for customers and staff |
 | **Register Page** | New user registration with email/password validation |
+| **Forget Password Page** | Password reset functionality for users |
 | **Customer Data Form** | Customer profile management and personal information |
 | **Reservation Page** | Table booking system with date/time selection |
 | **Cart Page** | Order summary, item management, and checkout process |
@@ -111,97 +122,10 @@ restaurant-dashboard/
 └── README.md
 ```
 
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/mohamedhesham221/restaurant-dashboard
-cd restaurant-dashboard
-```
-
-2. Install dependencies:
-
-```bash
-npm install
-```
-
-3. Start the development server:
-
-```bash
-npm run dev
-```
-
-## 🔥 Firebase Configuration
-
-### 1. Firebase Project Setup
-
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Click "Add Project" and follow the setup wizard
-3. Enable these services:
-
-### 2. Authentication Setup
-
-```bash
-# Enable Email/Password and Google auth:
-1. Go to Authentication → Sign-in method
-2. Click "Email/Password" and enable it
-4. Save changes
-```
-
-### 3. Firestore Database Setup
-
-1. Go to Firestore Database
-2. Click "Create Database" → Start in test mode
-3. Choose your preferred region
-4. Create these collections:
-   - `meals`
-   - `orders`
-   - `reservations`
-
-### 4. ImgBB Setup
-
-- For upload meals images
-
-1. Go To ImgBB
-2. Create an Account
-3. Visit API Key page
-4. Generate a new API key
-5. Copy the API key
-6. Use the key in your React code
-
-### Environment Variables
-
-Create `.env` file in project root:
-
-```env
-VITE_FIREBASE_API_KEY=your_api_key_here
-VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-VITE_IMGBB_API_KEY=your_imgbb_api_key
-```
-
-## 🏗️ Build for Production
-
-```bash
-# Build the application
-npm run build
-
-# Preview the build
-npm run preview
-```
-
 ## 👨‍💻 Author
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/your-profile/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@gmail.com)
-
-## 📄 License
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## ⭐ Show your support
 
