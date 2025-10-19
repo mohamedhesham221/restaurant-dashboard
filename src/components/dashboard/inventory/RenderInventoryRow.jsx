@@ -15,11 +15,19 @@ import {
   Avatar,
 } from "@mui/material";
 
+/**
+ * Maps inventory status keys ("enough", "moderate", "low") to their hex color codes.
+ */
 const statusColors = {
   enough: "#73946B",
   moderate: "#f7ae31ff",
   low: "#E55050",
 };
+/**
+ * Get the color associated with an inventory status.
+ * Status name ("enough", "moderate", or other → "low").
+ * @returns {string} Corresponding color value from statusColors.
+ */
 const setStatusColor = (status) => {
   switch (status) {
     case "enough":
@@ -59,8 +67,14 @@ const RenderInventoryRow = ({
       border: 0,
     },
   }));
-  const updatedDate =
-    item.createdAt && item.createdAt.toDate().toLocaleString();
+  /**
+   * Formats the item's creation timestamp to a localized date string
+   */
+  const updatedDate = () => {
+    const date = item.createdAt && item.createdAt.toDate().toLocaleString();
+    const comma = date.search(",");
+    return date.slice(0,comma)
+  }
 
   return (
     <>
@@ -85,7 +99,7 @@ const RenderInventoryRow = ({
             )}
           </Box>
         </StyledTableCell>
-        <StyledTableCell align="center">{updatedDate}</StyledTableCell>
+        <StyledTableCell align="center">{updatedDate()}</StyledTableCell>
         <StyledTableCell align="center">
           <ButtonGroup>
             <Button
