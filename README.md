@@ -27,7 +27,6 @@ If you'd like to explore the dashboard, you can log in using the demo account be
 🔑 **Password:** Demo2025  
 
 > ⚠️ This is a *read-only demo account.*  
-> Please don’t modify or delete data — it’s shared with other users testing the project.
 
 ## Pages & Components
 
