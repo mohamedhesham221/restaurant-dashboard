@@ -15,9 +15,7 @@ import {
   Button,
   Paper,
   tableCellClasses,
-  Select,
-  OutlinedInput,
-  MenuItem,
+  TablePagination,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
@@ -26,6 +24,7 @@ import { useInventory } from "../../../hooks/useInventory";
 import InventoryRows from "./InventoryRows";
 import ModalForm from "./ModalForm";
 import DeleteItemWarning from "./DeleteItemWarning";
+import { usePagination } from "../../../hooks/usePagination";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -51,11 +50,19 @@ const style = {
 
 const InventoryTable = () => {
   const { data: inventory, isLoading } = useInventory();
+  const {
+    pagedItems,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    page,
+    rowsPerPage,
+  } = usePagination(inventory, 5);
   const [openModal, setOpenModal] = React.useState(false);
   const [modalType, setModalType] = React.useState("add");
   const [itemId, setItemId] = React.useState(null);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
   const [query, setQuery] = React.useState(""); // State to manage search query
+
   const handleModalOpen = () => setOpenModal(true);
   const handleModalClose = () => setOpenModal(false);
   const handleSearch = (e) => {
@@ -122,71 +129,83 @@ const InventoryTable = () => {
             Inventory is empty!!
           </Typography>
         ) : (
-          <TableContainer component={Paper} sx={{ marginTop: "20px" }}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  {/* Table headers */}
-                  <StyledTableCell align="center">Item</StyledTableCell>
-                  <StyledTableCell
-                    align="center"
-                    sx={{ fontFamily: "var(--font)" }}
-                  >
-                    Category
-                  </StyledTableCell>
-                  <StyledTableCell
-                    align="center"
-                    sx={{ fontFamily: "var(--font)" }}
-                  >
-                    Quantity
-                  </StyledTableCell>
-                  <StyledTableCell
-                    align="center"
-                    sx={{ fontFamily: "var(--font)" }}
-                  >
-                    Unit
-                  </StyledTableCell>
-                  <StyledTableCell
-                    align="center"
-                    sx={{ fontFamily: "var(--font)" }}
-                  >
-                    Status
-                  </StyledTableCell>
-                  <StyledTableCell
-                    align="center"
-                    sx={{ fontFamily: "var(--font)" }}
-                  >
-                    Max Quantity
-                  </StyledTableCell>
-                  <StyledTableCell
-                    align="center"
-                    sx={{ fontFamily: "var(--font)" }}
-                  >
-                    Last Updated
-                  </StyledTableCell>
-                  <StyledTableCell
-                    align="center"
-                    sx={{ fontFamily: "var(--font)" }}
-                  >
-                    Actions
-                  </StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {/* Render rows of stuff*/}
-                <InventoryRows
-                  inventory={inventory}
-                  setOpenModal={setOpenModal}
-                  styled={styled}
-                  query={query}
-                  setItemId={setItemId}
-                  setFormType={setModalType}
-                  handleModalOpen={handleModalOpen}
-                  setOpenDeleteModal={setOpenDeleteModal}
-                />
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <>
+            <TableContainer component={Paper} sx={{ marginTop: "20px" }}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    {/* Table headers */}
+                    <StyledTableCell align="center">Item</StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                      sx={{ fontFamily: "var(--font)" }}
+                    >
+                      Category
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                      sx={{ fontFamily: "var(--font)" }}
+                    >
+                      Quantity
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                      sx={{ fontFamily: "var(--font)" }}
+                    >
+                      Unit
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                      sx={{ fontFamily: "var(--font)" }}
+                    >
+                      Status
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                      sx={{ fontFamily: "var(--font)" }}
+                    >
+                      Max Quantity
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                      sx={{ fontFamily: "var(--font)" }}
+                    >
+                      Last Updated
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                      sx={{ fontFamily: "var(--font)" }}
+                    >
+                      Actions
+                    </StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {/* Render rows of stuff*/}
+                  <InventoryRows
+                    inventory={pagedItems}
+                    setOpenModal={setOpenModal}
+                    styled={styled}
+                    query={query}
+                    setItemId={setItemId}
+                    setFormType={setModalType}
+                    handleModalOpen={handleModalOpen}
+                    setOpenDeleteModal={setOpenDeleteModal}
+                  />
+                </TableBody>
+              </Table>
+            </TableContainer>
+
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25]}
+              count={inventory.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              component="div"
+            />
+          </>
         )}
       </Container>
       <ModalForm

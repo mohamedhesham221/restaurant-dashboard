@@ -18,10 +18,13 @@ import {
   Select,
   OutlinedInput,
   MenuItem,
+  TablePagination,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
 import { useMeals } from "../../../hooks/useMeals";
+import { usePagination } from "../../../hooks/usePagination";
+
 import MealsTableRows from "./MealsTableRows";
 import ModalForm from "./ModalForm";
 import Loading from "../../Loading";
@@ -55,6 +58,13 @@ const style = {
 // MealsTable component displays a searchable and filterable table of meals
 const MealsTable = () => {
   const { data: meals, isLoading } = useMeals(); // Fetch meals data using custom hook
+  const {
+    pagedItems,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    page,
+    rowsPerPage,
+  } = usePagination(meals, 5);
   const [query, setQuery] = React.useState(""); // State to manage search query
   const [rate, setRate] = React.useState("");
   const handleSelect = (e) => {
@@ -195,7 +205,7 @@ const MealsTable = () => {
             </TableHead>
             <TableBody>
               <MealsTableRows
-                meals={meals}
+                meals={pagedItems}
                 query={query}
                 rate={rate}
                 styled={styled}
@@ -207,6 +217,15 @@ const MealsTable = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          count={meals.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          component="div"
+        />
       </Container>
       <ModalForm
         openModal={openModal}

@@ -19,11 +19,13 @@ import {
   OutlinedInput,
   MenuItem,
   Modal,
+  TablePagination
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ReservationForm from "../../reservations/ReservationForm";
 import { styled } from "@mui/material/styles";
 import { useReservations } from "../../../hooks/useReservations";
+import { usePagination } from "../../../hooks/usePagination";
 import Loading from "../../Loading";
 import ReservationsRows from "./ReservationsRows";
 import DeleteReservationWarning from "./DeleteReservationWarning";
@@ -53,6 +55,13 @@ const style = {
 // Component to display and manage reservations table with search, add, edit, and delete functionality
 const ReservationsTable = () => {
   const { data: reservations, isLoading } = useReservations(); // Fetch reservations data using custom hook
+   const {
+      pagedItems,
+      handleChangePage,
+      handleChangeRowsPerPage,
+      page,
+      rowsPerPage,
+    } = usePagination(reservations, 5);
   const [openModal, setOpenModal] = React.useState(false); // State to manage modal visibility
   const [filterQuery, setFilterQuery] = React.useState("");
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false); // State to manage delete confirmation modal
@@ -195,7 +204,7 @@ const ReservationsTable = () => {
             <TableBody>
               {/* Render rows of reservations */}
               <ReservationsRows
-                reservations={reservations}
+                reservations={pagedItems}
                 query={query}
                 styled={styled}
                 setReservationId={setReservationId}
@@ -207,6 +216,15 @@ const ReservationsTable = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        <TablePagination
+                  rowsPerPageOptions={[5, 10, 25]}
+                  count={reservations.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  component="div"
+                />
       </Container>
       {/* Modal for adding/editing reservations */}
       <Modal

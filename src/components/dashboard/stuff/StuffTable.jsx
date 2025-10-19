@@ -15,14 +15,13 @@ import {
   Button,
   Paper,
   tableCellClasses,
-  Select,
-  OutlinedInput,
-  MenuItem,
+  TablePagination,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
 import Loading from "../../Loading";
 import { useStuff } from "../../../hooks/useStuff";
+import { usePagination } from "../../../hooks/usePagination";
 import StuffRows from "./StuffRows";
 import ModalForm from "./ModalForm";
 import DeleteEmployeeWarning from "./DeleteEmployeeWarning";
@@ -51,6 +50,13 @@ const style = {
 
 const StuffTable = () => {
   const { data: stuff, isLoading } = useStuff();
+  const {
+    pagedItems,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    page,
+    rowsPerPage,
+  } = usePagination(stuff, 5);
   const [openModal, setOpenModal] = React.useState(false);
   const [modalType, setModalType] = React.useState("add");
   const [employeeId, setEmployeeId] = React.useState(null);
@@ -58,7 +64,7 @@ const StuffTable = () => {
   const [query, setQuery] = React.useState(""); // State to manage search query
   const handleModalOpen = () => setOpenModal(true);
   const handleModalClose = () => setOpenModal(false);
-const handleSearch = (e) => {
+  const handleSearch = (e) => {
     setQuery(e.target.value); // Update search query on input change
   };
   if (isLoading) return <Loading />; // Show loading spinner while data is being fetched
@@ -175,7 +181,7 @@ const handleSearch = (e) => {
                 {/* Render rows of stuff*/}
                 <StuffRows
                   setOpenModal={setOpenModal}
-                  stuff={stuff}
+                  stuff={pagedItems}
                   styled={styled}
                   query={query}
                   setEmployeeId={setEmployeeId}
@@ -187,6 +193,15 @@ const handleSearch = (e) => {
             </Table>
           </TableContainer>
         )}
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          count={stuff.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          component="div"
+        />
       </Container>
 
       <ModalForm
