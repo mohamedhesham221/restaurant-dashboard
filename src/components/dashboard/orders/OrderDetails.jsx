@@ -54,8 +54,8 @@ const OrderDetails = ({ order, open, handleClose, statusColors }) => {
             mx: "auto",
             my: 6,
             p: { xs: 3, md: 4 },
+            backgroundColor: "background.default",
             borderRadius: 4,
-            backgroundColor: "#fff",
             boxShadow: "0 10px 35px rgba(0,0,0,0.15)",
             outline: "none",
             overflowY: "auto",
@@ -101,7 +101,6 @@ const OrderDetails = ({ order, open, handleClose, statusColors }) => {
             sx={{
               p: 2.5,
               borderRadius: 3,
-              backgroundColor: "#fafafa",
             }}
           >
             <Stack direction="row" flexWrap="wrap" gap={2}>
@@ -156,7 +155,6 @@ const OrderDetails = ({ order, open, handleClose, statusColors }) => {
             sx={{
               p: 2,
               borderRadius: 3,
-              backgroundColor: "#fefefe",
             }}
           >
             <OrderDetailsMeals order={order} orderStatus={statusColors} />

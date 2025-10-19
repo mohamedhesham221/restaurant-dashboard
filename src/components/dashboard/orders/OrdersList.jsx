@@ -15,17 +15,26 @@ import PaymentIcon from "@mui/icons-material/Payment";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 // Component to display a list of orders with their details
 // Allows selecting an order to view more details
-const OrdersList = ({ setCurrentOrder, handleOpen, statusColors }) => {
+const OrdersList = ({ setCurrentOrder, handleOpen, statusColors, query }) => {
   const { data: orders, isLoading } = useOrders();
   const pricesArray = orders?.map((order) => order.orderBag) || [];
 
+  // Filter order wth order ID
+  let filteredOrders = orders;
+  if (query) {
+    filteredOrders = orders.filter((order) =>
+      order.id.slice(0,5).toLowerCase().includes(query.toLowerCase())
+    );
+  } else {
+    filteredOrders = orders
+  }
   // Show loading spinner while data is being fetched
   if (isLoading) return <Loading />;
   return (
     <>
       <Stack direction={{ xs: "column", lg: "row" }} gap={2} flexWrap="wrap">
         {/* Map through the orders and display each as a card */}
-        {orders.map((order, index) => {
+        {filteredOrders.map((order, index) => {
           return (
             <Card
               sx={{

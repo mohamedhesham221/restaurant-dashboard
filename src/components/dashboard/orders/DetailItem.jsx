@@ -8,7 +8,7 @@ const DetailItem = ({ icon, label, value }) => (
     <Box>
       <Typography
         variant="body2"
-        sx={{ fontWeight: 600, color: "text.primary", fontFamily: "var(--font)" }}
+        sx={{ fontWeight: 600,  fontFamily: "var(--font)" }}
       >
         {label}
       </Typography>
