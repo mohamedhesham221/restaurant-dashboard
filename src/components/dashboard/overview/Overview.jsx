@@ -3,6 +3,8 @@ import { Container, Stack } from '@mui/material';
 import Sells from './Sells';
 import BestMeals from './BestMeals';
 import Statistics from './Statistics';
+import RecentOrder from './RecentOrder';
+import LowStockItems from './LowStockItems';
 const Overview = () => {
   return (
     <>
@@ -14,6 +16,10 @@ const Overview = () => {
         <Stack direction={{xs: 'column', lg: 'row'}} spacing={2} justifyContent="space-between" flexWrap="wrap">
           <Sells />
           <BestMeals />
+        </Stack>
+        <Stack direction={{xs: 'column', lg: 'row'}} spacing={2} >
+          <RecentOrder />
+          <LowStockItems />
         </Stack>
       </Stack>
       </Container>
