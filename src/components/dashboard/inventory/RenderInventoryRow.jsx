@@ -1,6 +1,10 @@
 import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
+import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+
 import {
   Box,
   TableCell,
@@ -11,37 +15,27 @@ import {
   Avatar,
 } from "@mui/material";
 
-import { TrendingUp, TrendingDown, TrendingFlat } from "@mui/icons-material";
-/**Format name to tow chars */
-const stringAvatar = (name = "employee") => {
-  const parts = name.trim().split(" ");
-  const first = parts[0]?.[0]?.toUpperCase() || "";
-  const second = parts[1]?.[0]?.toUpperCase() || "";
-  return {
-    children: `${first}${second}` || "E",
-  };
+const statusColors = {
+  enough: "#73946B",
+  moderate: "#f7ae31ff",
+  low: "#E55050",
 };
-
-const ratingColors = {
-  topRate: "#73946B",
-  midRate: "#f7ae31ff",
-  lowRate: "#E55050",
-};
-const setRatingColor = (rate) => {
-  if (rate >= 4.5) {
-    return ratingColors.topRate;
-  } else if (rate >= 3 && rate < 4.5) {
-    return ratingColors.midRate;
-  } else if (rate < 4) {
-    return ratingColors.lowRate;
+const setStatusColor = (status) => {
+  switch (status) {
+    case "enough":
+      return statusColors.enough
+    case "moderate":
+      return statusColors.moderate
+    default:
+      return statusColors.low
   }
 };
 
-const RenderStuffRow = ({
+const RenderInventoryRow = ({
+  item,
   styled,
-  employee,
+  setItemId,
   setFormType,
-  setEmployeeId,
   handleModalOpen,
   setOpenDeleteModal,
 }) => {
@@ -51,7 +45,7 @@ const RenderStuffRow = ({
       fontSize: 14,
       fontFamily: "var(--font)",
       whiteSpace: "nowrap",
-      textTransform: "capitalize !important"
+      textTransform: "capitalize !important",
     },
   }));
 
@@ -65,35 +59,33 @@ const RenderStuffRow = ({
       border: 0,
     },
   }));
+  const updatedDate =
+    item.createdAt && item.createdAt.toDate().toLocaleString();
 
   return (
     <>
       <StyledTableRow>
         <StyledTableCell component="th" scope="row" align="center">
-          <Avatar
-            sx={{ fontFamily: "var(--font)" }}
-            {...stringAvatar(employee?.name)}
-          />
+          {item.item}
         </StyledTableCell>
-        <StyledTableCell align="center">{employee.name}</StyledTableCell>
-        <StyledTableCell align="center">{employee.role}</StyledTableCell>
-        <StyledTableCell align="center">{employee.salary}</StyledTableCell>
-        <StyledTableCell align="center">{employee.shift}</StyledTableCell>
-        <StyledTableCell align="center">{employee.contact}</StyledTableCell>
+        <StyledTableCell align="center">{item.category}</StyledTableCell>
+        <StyledTableCell align="center">{item.quantity}</StyledTableCell>
+        <StyledTableCell align="center">{item.unit}</StyledTableCell>
         <StyledTableCell align="center">
-          <Box component="span" sx={{ color: setRatingColor(employee.rating) }}>
-            {employee.rating}
-          </Box>
-          <Box component="sub" sx={{ color: setRatingColor(employee.rating) }}>
-            {employee.rating >= 4.5 ? (
-              <TrendingUp fontSize="small" />
-            ) : employee.rating >= 4 && employee.rating < 4.5 ? (
-              <TrendingFlat fontSize="small" />
-            ) : (
-              <TrendingDown fontSize="small" />
+          <Box component="span">{item.status}</Box>
+          <Box component="sub" sx={{ color: setStatusColor(item.status) }}>
+            {item.status === "enough" && (
+              <KeyboardDoubleArrowUpIcon fontSize="small" />
+            )}
+            {item.status === "moderate" && (
+              <HorizontalRuleIcon fontSize="small" />
+            )}
+            {item.status === "low" && (
+              <KeyboardDoubleArrowDownIcon fontSize="small" />
             )}
           </Box>
         </StyledTableCell>
+        <StyledTableCell align="center">{updatedDate}</StyledTableCell>
         <StyledTableCell align="center">
           <ButtonGroup>
             <Button
@@ -107,7 +99,7 @@ const RenderStuffRow = ({
               }}
               onClick={() => {
                 setFormType("edit");
-                setEmployeeId(employee.id);
+                setItemId(item.id);
                 handleModalOpen();
               }}
             >
@@ -123,8 +115,8 @@ const RenderStuffRow = ({
                 fontFamily: "var(--font)",
               }}
               onClick={() => {
-                setEmployeeId(employee.id);
-                setOpenDeleteModal(true)
+                setItemId(item.id);
+                setOpenDeleteModal(true);
               }}
             >
               Delete
@@ -136,4 +128,4 @@ const RenderStuffRow = ({
   );
 };
 
-export default RenderStuffRow;
+export default RenderInventoryRow;

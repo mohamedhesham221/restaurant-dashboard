@@ -155,11 +155,11 @@ const ModalForm = ({
                   modalType === "edit" ? { inputLabel: { shrink: true } } : ""
                 }
               />
-              {/* Input field for Employee Name */}
+              {/* Input field for Employee Salary */}
               <TextField
                 label="Salary"
                 variant="outlined"
-                name="name"
+                name="salary"
                 type="number"
                 sx={{ fontFamily: "var(--font)" }}
                 {...register("salary", { required: "Salary is required" })}
