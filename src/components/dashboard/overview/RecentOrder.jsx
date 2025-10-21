@@ -37,6 +37,7 @@ const RecentOrder = () => {
           variant="h4"
           align="left"
           fontFamily="var(--font)"
+          fontSize={{ xs: "1.5rem", sm: "2rem", md: "2.5rem" }}
         >
           Recent Orders
         </Typography>
@@ -46,6 +47,7 @@ const RecentOrder = () => {
           align="left"
           color="var(--secondary-text)"
           fontFamily="var(--font)"
+          fontSize={{ xs: "0.8rem", sm: "1rem" }}
         >
           Track your latest customer orders and monitor order status
         </Typography>

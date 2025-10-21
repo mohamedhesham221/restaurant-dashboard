@@ -34,6 +34,7 @@ const LowStockItems = () => {
           variant="h4"
           align="left"
           fontFamily="var(--font)"
+          fontSize={{ xs: "1.5rem", sm: "2rem", md: "2.5rem" }}
         >
           Low Stock Items
         </Typography>
@@ -41,8 +42,10 @@ const LowStockItems = () => {
           gutterBottom
           align="left"
           color="var(--secondary-text)"
-          fontFamily="var(--font)">
-            Track your items to restock before they impact your service
+          fontFamily="var(--font)"
+          fontSize={{ xs: "0.7=8rem", md: "1rem" }}
+        >
+          Track your items to restock before they impact your service
         </Typography>
         <Box
           sx={{
@@ -84,7 +87,7 @@ const LowStockItems = () => {
                       <TableCell component="th" scope="row">
                         {row.item}
                       </TableCell>
-                      <TableCell>{row.category}</TableCell>
+                      <TableCell sx={{ fontFamily: "var(--font)", textTransform: "capitalize" }}>{row.category}</TableCell>
                       <TableCell align="center">
                         <Stack spacing={0.5}>
                           <Typography>{row.quantity}</Typography>
@@ -100,7 +103,7 @@ const LowStockItems = () => {
                           />
                         </Stack>
                       </TableCell>
-                      <TableCell align="center">{row.unit}</TableCell>
+                      <TableCell align="center" sx={{ fontFamily: "var(--font)", textTransform: "capitalize" }}>{row.unit}</TableCell>
                       <TableCell align="center">
                         <Chip
                           label={row.status}

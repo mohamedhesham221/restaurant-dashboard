@@ -9,7 +9,7 @@ const Overview = () => {
   return (
     <>
       <Container maxWidth="lg" sx={{ padding: "2rem" }}>
-        <Stack direction={{ xs: "column" }} spacing={4}>
+        <Stack direction={{ xs: "column" }} spacing={6}>
           <Stack
             direction={{ xs: "column", md: "row" }}
             gap={1}
@@ -27,7 +27,6 @@ const Overview = () => {
             direction={{ xs: "column", lg: "row" }}
             spacing={2}
             justifyContent="space-between"
-            marginBottom="2rem"
           >
             <BestMeals />
             <RecentOrder />

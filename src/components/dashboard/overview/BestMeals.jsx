@@ -28,6 +28,7 @@ const BestMeals = () => {
           variant="h4"
           align="left"
           fontFamily="var(--font)"
+          fontSize={{ xs: "1.5rem", sm: "2rem", md: "2.5rem" }}
         >
           Best Dishes
         </Typography>
@@ -37,6 +38,7 @@ const BestMeals = () => {
           align="left"
           color="var(--secondary-text)"
           fontFamily="var(--font)"
+          fontSize={{ xs: "0.8rem", sm: "1rem" }}
         >
           Track the top-performing dishes
         </Typography>
@@ -61,6 +63,7 @@ const BestMeals = () => {
                   .map((meal) => (
                     <TableRow
                       key={meal.name}
+                      hover
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       {/* Meal details with image and name */}
