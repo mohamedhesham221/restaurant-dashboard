@@ -30,93 +30,109 @@ const RecentOrder = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <Box
-      sx={{
-        width: "100%",
-        maxWidth: "550px",
-        overflowY: "scroll",
-        height: "400px",
-      }}
-      flexGrow={1}
-    >
-      {/* Title for recent orders section */}
-      <Typography
-        variant="h4"
-        gutterBottom
-        align="left"
-        fontFamily="var(--font)"
-      >
-        Recent Orders
-      </Typography>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 400 }} aria-label="recent orders table">
-          <TableHead>
-            <TableRow>
-              {/* Table headers */}
-              <TableCell sx={{ fontFamily: "var(--font)" }}>Name</TableCell>
-              <TableCell align="" sx={{ fontFamily: "var(--font)" }}>
-                Orders
-              </TableCell>
-              <TableCell sx={{ fontFamily: "var(--font)" }}>Status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {/* Filter meals with a rating greater than 4 and map them to table rows */}
-            {orders.slice(0, 4).map((order) => (
-              <TableRow
-                key={order.id}
-                hover
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                {/* Meal details with image and name */}
-                <TableCell
-                  component="th"
-                  scope="row"
-                  sx={{
-                    alignItems: "center",
-                    gap: "10px",
-                    fontFamily: "var(--font)",
-                  }}
-                >
-                  {order.name}
-                </TableCell>
-                <TableCell>
-                  <Stack
-                    direction="column"
-                    spacing={1}
-                    sx={{ fontFamily: "var(--font)" }}
+    <>
+      <Box sx={{ width: "100%", maxWidth: 550, height: 400 }}>
+        {/* Title for recent orders section */}
+        <Typography
+          variant="h4"
+          align="left"
+          fontFamily="var(--font)"
+        >
+          Recent Orders
+        </Typography>
+        <Typography
+          variant="body1"
+          gutterBottom
+          align="left"
+          color="var(--secondary-text)"
+          fontFamily="var(--font)"
+        >
+          Track your latest customer orders and monitor order status
+        </Typography>
+        <Box
+          sx={{
+            overflowY: "auto",
+            height: 300,
+            p: 1,
+          }}
+          flexGrow={1}
+        >
+          <TableContainer component={Paper} sx={{ borderRadius: 2 }}>
+            <Table sx={{ minWidth: 400 }} aria-label="recent orders table">
+              <TableHead>
+                <TableRow>
+                  {/* Table headers */}
+                  <TableCell sx={{ fontFamily: "var(--font)" }}>Name</TableCell>
+                  <TableCell align="" sx={{ fontFamily: "var(--font)" }}>
+                    Orders
+                  </TableCell>
+                  <TableCell sx={{ fontFamily: "var(--font)" }}>
+                    Status
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {/* Filter meals with a rating greater than 4 and map them to table rows */}
+                {orders.slice(0, 4).map((order) => (
+                  <TableRow
+                    key={order.id}
+                    hover
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    {order.orderBag.map((o) => {
-                      return (
-                        <Typography
-                        key={o.name}
-                          variant="body2"
-                          color="var(--highlight-color)"
-                        >
-                          {o.name} @{o.quantity}
-                        </Typography>
-                      );
-                    })}
-                  </Stack>
-                </TableCell>
-                <TableCell sx={{ fontSize: "1rem", fontFamily: "var(--font)" }}>
-                  <Chip
-                    label={order.status}
-                    sx={{
-                      color: statusColors.find((s) => s.label === order.status)
-                        ?.color,
-                      backgroundColor:
-                        statusColors.find((s) => s.label === order.status)
-                          ?.color + "28",
-                    }}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+                    {/* Meal details with image and name */}
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={{
+                        alignItems: "center",
+                        gap: "10px",
+                        fontFamily: "var(--font)",
+                      }}
+                    >
+                      {order.name}
+                    </TableCell>
+                    <TableCell>
+                      <Stack
+                        direction="column"
+                        spacing={1}
+                        sx={{ fontFamily: "var(--font)" }}
+                      >
+                        {order.orderBag.map((o) => {
+                          return (
+                            <Typography
+                              key={o.name}
+                              variant="body2"
+                              color="var(--highlight-color)"
+                            >
+                              {o.name} @{o.quantity}
+                            </Typography>
+                          );
+                        })}
+                      </Stack>
+                    </TableCell>
+                    <TableCell
+                      sx={{ fontSize: "1rem", fontFamily: "var(--font)" }}
+                    >
+                      <Chip
+                        label={order.status}
+                        sx={{
+                          color: statusColors.find(
+                            (s) => s.label === order.status
+                          )?.color,
+                          backgroundColor:
+                            statusColors.find((s) => s.label === order.status)
+                              ?.color + "28",
+                        }}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+      </Box>
+    </>
   );
 };
 
