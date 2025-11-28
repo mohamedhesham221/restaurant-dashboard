@@ -47,7 +47,7 @@ const Cart = () => {
 						description={metaData.cart.description}
 					/>
 			<Layout>
-				<Container maxWidth="lg" sx={{ padding: "2rem" }}>
+				<Container maxWidth="lg" sx={{ padding: "2rem", marginTop: "50px" }}>
 					{/* Header section */}
 					<Typography
 						variant="h1"
