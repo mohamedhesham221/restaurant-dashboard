@@ -10,7 +10,7 @@ const FaqHeader = () => {
         spacing={2}
         sx={{
           alignItems: "center",
-          marginBottom: "50px",
+          marginY: "50px",
         }}
       >
         <TextFade direction="up" staggerChildren={0.2} isOnce={false}>

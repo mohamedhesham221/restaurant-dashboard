@@ -133,10 +133,9 @@ const Header = () => {
   return (
     <>
       <AppBar
-        position="static"
+        position="fixed"
         sx={{
           backgroundColor: "var(--bg-color)",
-          position: "relative",
           zIndex: "9999",
         }}
       >

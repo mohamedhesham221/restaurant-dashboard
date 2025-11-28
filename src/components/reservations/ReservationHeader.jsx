@@ -34,6 +34,7 @@ const ReservationHeader = () => {
         spacing={2}
         sx={{
           alignItems: "center",
+          marginY: "50px",
         }}
       >
           <TextFade direction="up" staggerChildren={0.2} isOnce={false}>
