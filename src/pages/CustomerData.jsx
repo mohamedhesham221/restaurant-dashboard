@@ -22,7 +22,7 @@ const CustomerData = () => {
 						variant="h1"
 						fontSize={{ xs: "1rem", md: "2rem" }}
 						color="var(--primary-text)"
-						marginTop={5}
+						marginTop={10}
 						marginBottom={3}
 					>
 						Customer Information
